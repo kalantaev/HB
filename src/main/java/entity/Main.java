@@ -11,7 +11,7 @@ public class Main {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        session.persist(user);
+        session.save(user);
         session.close();
     }
 
