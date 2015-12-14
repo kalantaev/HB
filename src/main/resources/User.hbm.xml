@@ -8,5 +8,13 @@
             <generator class="native"/>
         </id>
         <property name="login" column="login"/>
+        <property name="password" column="password"/>
+        <property name="dateReg" column="dateReg"/>
+        <property name="dateLastVisit" column="dateLastVizit"/>
+        <bag name="commentariyList" inverse="true" cascade="all-delete-orphan">
+            <key column="id"></key>
+            <one-to-many class="entity.Commentariy"/>
+        </bag>
+
     </class>
 </hibernate-mapping>

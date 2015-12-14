@@ -3,9 +3,7 @@ package entity;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-/**
- * Created by Администратор on 09.12.2015.
- */
+
 public class HibernateUtil {
 
     private static SessionFactory sessionFactory;
@@ -14,7 +12,13 @@ public class HibernateUtil {
         if(sessionFactory == null){
             sessionFactory = new Configuration().configure().buildSessionFactory();
         }
-        return sessionFactory;
+        if(sessionFactory == null){
+            System.out.println("sessionFactory do not inicialization");
+            return sessionFactory;
+        }else {
+            return sessionFactory;
+
+        }
     }
 
 }
