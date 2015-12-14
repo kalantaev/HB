@@ -4,11 +4,11 @@
 
 <hibernate-mapping package="entity">
     <class name="Commentariy" table="comments">
-        <id name="id" column="comment_id">
+        <id name="commentId" column="comment_id">
             <generator class="native"/>
         </id>
         <property name="description" column="description"/>
-        <many-to-one name="userAutor" column="id" class="entity.User"/>
+        <many-to-one name="userAutor" column="user_id" class="entity.User"/>
         
     </class>
 </hibernate-mapping>

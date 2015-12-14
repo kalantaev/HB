@@ -2,12 +2,12 @@ package entity;
 
 
 public class Commentariy {
-    private Integer id;
+    private Integer CommentId;
     private User userAutor;
     private String description;
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCommentId(Integer id) {
+        this.CommentId = id;
     }
 
     public void setUserAutor(User userAutor) {
@@ -18,8 +18,8 @@ public class Commentariy {
         this.description = description;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getCommentId() {
+        return CommentId;
     }
 
     public User getUserAutor() {

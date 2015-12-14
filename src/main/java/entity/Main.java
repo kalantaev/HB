@@ -24,6 +24,12 @@ public class Main {
         session.close();
         return user;
     }
+    public static void addComment(Commentariy com){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.save(com);
+        session.close();
+    }
 
     public static void main(String[] args) {
         User user = new User();
@@ -39,6 +45,8 @@ public class Main {
         commentariys.add(com);
         commentariys.add(com2);
         user.setCommentariyList(commentariys);
+        addComment(com);
+        addComment(com2);
         user.setDateReg(new Date());
         user.setDateLastVisit(new Date());
         saveUser(user);

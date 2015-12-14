@@ -1,6 +1,5 @@
 package entity;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +11,7 @@ public class User {
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
 //    @Column(name = "id")
-    private Integer id;
+    private Integer userId;
 //    @Column(name = "login")
     private String login;
 
@@ -40,8 +39,8 @@ public class User {
         this.dateLastVisit = dateLastVisit;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer id) {
+        this.userId = id;
     }
 
     public void setLogin(String login) {
@@ -52,8 +51,8 @@ public class User {
         return commentariyList;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
     public String getLogin() {
