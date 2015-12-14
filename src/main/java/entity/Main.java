@@ -1,10 +1,9 @@
 package entity;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
 public class Main {
@@ -32,26 +31,42 @@ public class Main {
     }
 
     public static void main(String[] args) {
+
+        SessionFactory sf = HibernateUtil.getSessionFactory();
+        Session session = sf.openSession();
+        session.beginTransaction();
+
+        User user = prepareUser();
+        session.save(user);
+
+        Commentariy com = prepareComment("Description 1");
+        com.setUserAutor(user);
+        session.save(com);
+
+        Commentariy com2 = prepareComment("Description 1");
+        com2.setUserAutor(user);
+        session.save(com2);
+
+        session.getTransaction().commit();
+        session.close();
+
+        User user1 = getUserById(2);
+        System.out.println(user1.getLogin());
+        System.out.println(user1.getDateLastVisit());
+    }
+
+    private static Commentariy prepareComment(String desc) {
+        Commentariy com = new Commentariy();
+        com.setDescription(desc);
+        return com;
+    }
+
+    private static User prepareUser() {
         User user = new User();
         user.setLogin("login");
         user.setPassword("password");
-        Commentariy com = new Commentariy();
-        com.setUserAutor(user);
-        com.setDescription("Description 1");
-        Commentariy com2 = new Commentariy();
-        com2.setUserAutor(user);
-        com2.setDescription("Description 2");
-        List<Commentariy> commentariys = new ArrayList<Commentariy>();
-        commentariys.add(com);
-        commentariys.add(com2);
-        user.setCommentariyList(commentariys);
-        addComment(com);
-        addComment(com2);
         user.setDateReg(new Date());
         user.setDateLastVisit(new Date());
-        saveUser(user);
-        User user1 = getUserById(1);
-        System.out.println(user1.getLogin());
-        System.out.println(user1.getDateLastVisit());
+        return user;
     }
 }

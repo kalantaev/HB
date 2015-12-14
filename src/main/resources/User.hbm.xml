@@ -12,7 +12,7 @@
         <property name="dateReg" column="dateReg"/>
         <property name="dateLastVisit" column="dateLastVizit"/>
         <bag name="commentariyList" inverse="true" cascade="all-delete-orphan">
-            <key column="comment_id"></key>
+            <key column="user_id"></key>
             <one-to-many class="entity.Commentariy"/>
         </bag>
 
