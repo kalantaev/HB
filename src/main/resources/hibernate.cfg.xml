@@ -17,6 +17,7 @@
         <!--<mapping class="entity.User"/>-->
         <mapping resource="User.hbm.xml"/>
         <mapping resource="Commentariy.hbm.xml"/>
+        <mapping resource="Content.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

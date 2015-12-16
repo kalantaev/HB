@@ -15,6 +15,9 @@
             <key column="user_id"></key>
             <one-to-many class="entity.Commentariy"/>
         </bag>
-
+        <set name="contentList" table="content_user">
+            <key column="user_id"></key>
+            <many-to-many column="content_id" class="entity.Content"/>
+        </set>
     </class>
 </hibernate-mapping>

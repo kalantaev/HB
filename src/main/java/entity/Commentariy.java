@@ -4,7 +4,17 @@ package entity;
 public class Commentariy {
     private Integer CommentId;
     private User userAutor;
+    private Content content;
     private String description;
+
+    public void setContent(Content content) {
+        this.content = content;
+    }
+
+    public Content getContent() {
+
+        return content;
+    }
 
     public void setCommentId(Integer id) {
         this.CommentId = id;

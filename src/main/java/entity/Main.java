@@ -1,9 +1,12 @@
 package entity;
 
+import DAO.UserDaoImpl;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class Main {
@@ -29,6 +32,14 @@ public class Main {
         session.save(com);
         session.close();
     }
+    public static List<Commentariy> getCommentByUserId(Integer uaerId){
+        List<Commentariy> commentariys = new ArrayList<Commentariy>();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        commentariys = (List<Commentariy>)session.createQuery("from Commentariy  where userAutor ="+uaerId).list();
+        session.close();
+        return commentariys;
+    }
 
     public static void main(String[] args) {
 
@@ -43,16 +54,20 @@ public class Main {
         com.setUserAutor(user);
         session.save(com);
 
-        Commentariy com2 = prepareComment("Description 1");
+        Commentariy com2 = prepareComment("Description 2");
         com2.setUserAutor(user);
         session.save(com2);
 
         session.getTransaction().commit();
         session.close();
 
-        User user1 = getUserById(2);
+        User user1 = getUserById(1);
+        user1.setCommentariyList(getCommentByUserId(1));
+
         System.out.println(user1.getLogin());
         System.out.println(user1.getDateLastVisit());
+        System.out.println(user1.getCommentariyList().get(1).getDescription());
+        System.out.println(new UserDaoImpl().selectByLogin("login").getLogin());
     }
 
     private static Commentariy prepareComment(String desc) {

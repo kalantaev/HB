@@ -19,9 +19,20 @@ public class User {
 
     private List<Commentariy> commentariyList;
 
+    private List<Content> contentList;
+
     private Date dateReg;
 
     private Date dateLastVisit;
+
+    public void setContentList(List<Content> contentList) {
+        this.contentList = contentList;
+    }
+
+    public List<Content> getContentList() {
+
+        return contentList;
+    }
 
     public void setCommentariyList(List<Commentariy> commentariyList) {
         this.commentariyList = commentariyList;
