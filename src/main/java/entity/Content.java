@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Администратор on 16.12.2015.
@@ -9,7 +10,7 @@ public class Content {
     private Integer contentId;
     private String title;
     private String contentDescription;
-    private List<User> listContentAutor;
+    private Set<User> listContentAutor;
     private List<Commentariy> commentariyList;
 
     public void setContentId(Integer contentId) {
@@ -42,11 +43,11 @@ public class Content {
         return contentDescription;
     }
 
-    public void setListContentAutor(List<User> listContentAutor) {
+    public void setListContentAutor(Set<User> listContentAutor) {
         this.listContentAutor = listContentAutor;
     }
 
-    public List<User> getListContentAutor() {
+    public Set<User> getListContentAutor() {
 
         return listContentAutor;
     }

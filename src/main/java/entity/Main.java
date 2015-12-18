@@ -1,45 +1,20 @@
 package entity;
 
+import DAO.ContentDaoImpl;
 import DAO.UserDaoImpl;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 public class Main {
 
-    public static void saveUser(User user){
 
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        session.save(user);
-        session.close();
-    }
 
-    public static User getUserById(Integer id){
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        User user = (User) session.get(User.class,id);
-        session.close();
-        return user;
-    }
-    public static void addComment(Commentariy com){
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        session.save(com);
-        session.close();
-    }
-    public static List<Commentariy> getCommentByUserId(Integer uaerId){
-        List<Commentariy> commentariys = new ArrayList<Commentariy>();
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        commentariys = (List<Commentariy>)session.createQuery("from Commentariy  where userAutor ="+uaerId).list();
-        session.close();
-        return commentariys;
-    }
+
+
+
 
     public static void main(String[] args) {
 
@@ -48,26 +23,44 @@ public class Main {
         session.beginTransaction();
 
         User user = prepareUser();
+        user.setContentList(null);
         session.save(user);
+
+        Content content = prepareContent(1);
+        Set<User> contAutor = new HashSet<User>();
+        contAutor.add(user);
+        content.setListContentAutor(contAutor);
+        session.save(content);
+
 
         Commentariy com = prepareComment("Description 1");
         com.setUserAutor(user);
+        com.setContent(content);
         session.save(com);
 
         Commentariy com2 = prepareComment("Description 2");
         com2.setUserAutor(user);
+        com2.setContent(content);
         session.save(com2);
 
         session.getTransaction().commit();
         session.close();
 
-        User user1 = getUserById(1);
-        user1.setCommentariyList(getCommentByUserId(1));
+        Set<Content> contentSet = new HashSet<Content>();
+        contentSet.add(content);
+        user.setContentList(contentSet);
+        new UserDaoImpl().updateUser(user);
 
-        System.out.println(user1.getLogin());
-        System.out.println(user1.getDateLastVisit());
-        System.out.println(user1.getCommentariyList().get(1).getDescription());
-        System.out.println(new UserDaoImpl().selectByLogin("login").getLogin());
+
+        User userBD = new UserDaoImpl().selectByID(1);
+
+        System.out.println(new UserDaoImpl().selectAllUser().get(0).getLogin());
+        System.out.println(userBD.getPassword());
+
+        userBD.setContentList(new ContentDaoImpl().getAllContent());
+        System.out.println(userBD.getContentList());
+
+
     }
 
     private static Commentariy prepareComment(String desc) {
@@ -78,10 +71,17 @@ public class Main {
 
     private static User prepareUser() {
         User user = new User();
-        user.setLogin("login");
-        user.setPassword("password");
+        user.setLogin("This login");
+        user.setPassword("This password");
         user.setDateReg(new Date());
         user.setDateLastVisit(new Date());
         return user;
+    }
+
+    private  static Content prepareContent(int n){
+        Content content = new Content();
+        content.setTitle("This content title #" + n);
+        content.setContentDescription("This content description #"+n);
+        return content;
     }
 }

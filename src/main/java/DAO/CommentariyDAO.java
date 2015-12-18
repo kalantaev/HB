@@ -10,7 +10,8 @@ import java.util.List;
 public interface CommentariyDAO {
     public void saveComment(Commentariy com);
     public void deleteCommentById(Integer id);
-    public Commentariy getCommentByUserId(Integer id);
+    public Commentariy getCommentById(Integer id);
+    public List<Commentariy> getCommentByUserId(Integer uaerId);
     public void updadeComment (Commentariy com);
     public List<Commentariy> getCommentListByUserId(Integer Id);
     }

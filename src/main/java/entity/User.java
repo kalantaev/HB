@@ -2,6 +2,7 @@ package entity;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 
 //@Entity
@@ -19,17 +20,17 @@ public class User {
 
     private List<Commentariy> commentariyList;
 
-    private List<Content> contentList;
+    private Set<Content> contentList;
 
     private Date dateReg;
 
     private Date dateLastVisit;
 
-    public void setContentList(List<Content> contentList) {
+    public void setContentList(Set<Content> contentList) {
         this.contentList = contentList;
     }
 
-    public List<Content> getContentList() {
+    public Set<Content> getContentList() {
 
         return contentList;
     }
