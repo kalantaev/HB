@@ -14,6 +14,6 @@ public interface ContentDAO {
     public void remuveContentById(Integer id);
     public void updateContent(Content content);
     public Content getContentById(Integer id);
-    public Set<Content> getAllContent();
+    public List<Content> getAllContent();
 
 }

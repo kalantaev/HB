@@ -2,6 +2,7 @@ package DAO;
 
 import entity.Content;
 import entity.HibernateUtil;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 
 import java.util.ArrayList;
@@ -43,11 +44,12 @@ public class ContentDaoImpl implements ContentDAO {
         return content;
     }
 
-    public Set<Content> getAllContent() {
+    public List<Content> getAllContent() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Set<Content> contents = new HashSet<Content>();
-        contents = (HashSet<Content>) session.createQuery("from Content").list();
+        List<Content> contents = null;
+        contents = (List<Content>) session.createQuery("from Content").list();
+
         session.close();
         return contents;
     }

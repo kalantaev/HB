@@ -9,7 +9,8 @@
         </id>
         <property name="title" column="title"/>
         <property name="contentDescription" column="description"/>
-        <set name="listContentAutor" table="content_user">
+
+        <set name="listContentAutor" table="content_user" lazy="false">
             <key column="content_id"></key>
             <many-to-many column="user_id" class="entity.User"/>
         </set>

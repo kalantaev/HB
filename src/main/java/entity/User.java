@@ -20,17 +20,17 @@ public class User {
 
     private List<Commentariy> commentariyList;
 
-    private Set<Content> contentList;
+    private List<Content> contentList;
 
     private Date dateReg;
 
     private Date dateLastVisit;
 
-    public void setContentList(Set<Content> contentList) {
+    public void setContentList(List<Content> contentList) {
         this.contentList = contentList;
     }
 
-    public Set<Content> getContentList() {
+    public List<Content> getContentList() {
 
         return contentList;
     }

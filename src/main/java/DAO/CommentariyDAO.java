@@ -13,5 +13,5 @@ public interface CommentariyDAO {
     public Commentariy getCommentById(Integer id);
     public List<Commentariy> getCommentByUserId(Integer uaerId);
     public void updadeComment (Commentariy com);
-    public List<Commentariy> getCommentListByUserId(Integer Id);
+    public List<Commentariy> getAllComment();
     }

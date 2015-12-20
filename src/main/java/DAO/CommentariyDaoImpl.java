@@ -50,7 +50,7 @@ public class CommentariyDaoImpl implements CommentariyDAO {
         return commentariys;
     }
 
-    public List<Commentariy> getCommentListByUserId(Integer Id) {
+    public List<Commentariy> getAllComment() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         List<Commentariy> commentariys = new ArrayList<Commentariy>();

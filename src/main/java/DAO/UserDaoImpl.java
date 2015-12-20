@@ -1,5 +1,6 @@
 package DAO;
 
+import entity.Content;
 import entity.HibernateUtil;
 import entity.User;
 import org.hibernate.Session;
@@ -7,6 +8,7 @@ import org.hibernate.Session;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Администратор on 15.12.2015.
@@ -40,6 +42,7 @@ public class UserDaoImpl implements UserDAO {
         session.beginTransaction();
         List<User> users = new ArrayList<User>();
         users = (List<User>) session.createQuery("from User ").list();
+
         session.close();
         return users;
     }
