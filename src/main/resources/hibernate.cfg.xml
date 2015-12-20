@@ -14,10 +14,12 @@
         <property name="hibernate.hbm2ddl.auto">create</property>
         <property name="hibernate.current_session_context_class">thread</property>
 
-        <!--<mapping class="entity.User"/>-->
-        <mapping resource="User.hbm.xml"/>
-        <mapping resource="Commentariy.hbm.xml"/>
-        <mapping resource="Content.hbm.xml"/>
+        <mapping class="entity.User"/>
+        <mapping class="entity.Commentariy"/>
+        <mapping class="entity.Content"/>
+        <!--<mapping resource="User.hbm.xml"/>-->
+        <!--<mapping resource="Commentariy.hbm.xml"/>-->
+        <!--<mapping resource="Content.hbm.xml"/>-->
 
     </session-factory>
 </hibernate-configuration>

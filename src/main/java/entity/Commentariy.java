@@ -1,10 +1,22 @@
 package entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "comments")
 
 public class Commentariy {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "comment_id")
     private Integer CommentId;
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User userAutor;
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "content_id")
     private Content content;
+    @Column(name = "description")
     private String description;
 
     public void setContent(Content content) {

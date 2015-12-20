@@ -1,36 +1,43 @@
 package entity;
 
+import org.hibernate.annotations.Entity;
+
+import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 
-//@Entity
-//@Table(name = "user2")
+@Entity
+@Table(name = "user2")
 public class User {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private Integer userId;
-//    @Column(name = "login")
+    @Column(name = "login")
     private String login;
-
+    @Column(name = "password")
     private String password;
-
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "userAutor")
     private List<Commentariy> commentariyList;
-
-    private List<Content> contentList;
-
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinTable(name = "content_user", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "content_id"))
+    private Set<Content> contentList;
+    @Column(name = "dateReg")
     private Date dateReg;
-
+    @Column(name = "dateLastVizit")
     private Date dateLastVisit;
 
-    public void setContentList(List<Content> contentList) {
+    public void setContentList(Set<Content> contentList) {
         this.contentList = contentList;
     }
 
-    public List<Content> getContentList() {
+    public Set<Content> getContentList() {
 
         return contentList;
     }

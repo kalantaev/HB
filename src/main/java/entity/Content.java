@@ -1,16 +1,25 @@
 package entity;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Администратор on 16.12.2015.
- */
+
+@Entity
+@Table(name = "content")
 public class Content {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "content_id")
     private Integer contentId;
+    @Column(name = "title")
     private String title;
+    @Column(name = "description")
     private String contentDescription;
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinTable(name = "content_user", joinColumns = @JoinColumn(name = "content_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> listContentAutor;
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "content")
     private List<Commentariy> commentariyList;
 
     public void setContentId(Integer contentId) {

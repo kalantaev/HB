@@ -8,8 +8,8 @@
             <generator class="native"/>
         </id>
         <property name="description" column="description"/>
-        <many-to-one name="userAutor" column="user_id" class="entity.User"/>
-        <many-to-one name="content" column="content_id" class="entity.Content"/>
+        <many-to-one name="userAutor" column="user_id"  lazy="false" class="entity.User"/>
+        <many-to-one name="content" column="content_id"  lazy="false" class="entity.Content"/>
         
     </class>
 </hibernate-mapping>

@@ -1,6 +1,7 @@
 package entity;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 
@@ -10,7 +11,7 @@ public class HibernateUtil {
 
     public static SessionFactory getSessionFactory(){
         if(sessionFactory == null){
-            sessionFactory = new Configuration().configure().buildSessionFactory();
+            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
         }
         if(sessionFactory == null){
             System.out.println("sessionFactory do not inicialization");

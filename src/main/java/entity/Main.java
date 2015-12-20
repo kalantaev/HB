@@ -2,6 +2,7 @@ package entity;
 
 import DAO.CommentariyDaoImpl;
 import DAO.ContentDaoImpl;
+import DAO.UserDAO;
 import DAO.UserDaoImpl;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,6 +11,7 @@ import java.util.*;
 
 
 public class Main {
+    private UserDAO userDAO;
 
     public static void main(String[] args) {
 
@@ -46,25 +48,26 @@ public class Main {
         session.close();
 
 
-        List<User> userList = new UserDaoImpl().selectAllUser();
-        for (User u:userList){
-            System.out.println(u.getLogin());
-            System.out.println(u.getPassword());
-            System.out.println(u.getUserId());
-            System.out.println(u.getDateReg());
-//            System.out.println(u.getContentList().get(0).getTitle());
+        User user2 = new UserDaoImpl().selectByID(1);
+        System.out.println(user2.getLogin());
+        System.out.println(user2.getCommentariyList().get(0).getDescription());
+        Set<Content> contentSet =  user2.getContentList();
+        for (Content content1 : contentSet) {
+            System.out.println(content1.getTitle());
         }
-        List<Content> contentSet = new ContentDaoImpl().getAllContent();
-        for (Content con: contentSet){
-            System.out.println(con.getContentId());
-            System.out.println(con.getTitle());
-            System.out.println(con.getContentDescription());
+        Commentariy commentariy = new CommentariyDaoImpl().getCommentById(1);
+        System.out.println(commentariy.getDescription());
+        System.out.println(commentariy.getContent().getTitle());
+        System.out.println(commentariy.getUserAutor().getLogin());
+
+        Content content1 = new ContentDaoImpl().getContentById(1);
+        System.out.println(content1.getTitle());
+        System.out.println(content1.getCommentariyList().get(0).getUserAutor().getLogin());
+        Set<User> userSet = content1.getListContentAutor();
+        for (User user3 : userSet) {
+            System.out.println(user3.getLogin());
         }
-        List<Commentariy> commentariyList = new CommentariyDaoImpl().getAllComment();
-        for (Commentariy comm:commentariyList){
-            System.out.println(comm.getCommentId());
-            System.out.println(comm.getDescription());
-        }
+//
     }
 
     private static Commentariy prepareComment(String desc) {

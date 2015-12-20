@@ -11,7 +11,7 @@
         <property name="password" column="password"/>
         <property name="dateReg" column="dateReg"/>
         <property name="dateLastVisit" column="dateLastVizit"/>
-        <bag name="commentariyList" inverse="true" cascade="all-delete-orphan">
+        <bag name="commentariyList" inverse="true" cascade="all-delete-orphan" lazy="false">
             <key column="user_id"></key>
             <one-to-many class="entity.Commentariy"/>
         </bag>

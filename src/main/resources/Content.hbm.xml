@@ -14,7 +14,7 @@
             <key column="content_id"></key>
             <many-to-many column="user_id" class="entity.User"/>
         </set>
-        <bag name="commentariyList" inverse="true" cascade="all-delete-orphan">
+        <bag name="commentariyList" inverse="true" lazy="false" cascade="all-delete-orphan">
             <key column="content_id"></key>
             <one-to-many class="entity.Commentariy"/>
 
