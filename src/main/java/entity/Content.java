@@ -18,9 +18,20 @@ public class Content {
     private String contentDescription;
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinTable(name = "content_user", joinColumns = @JoinColumn(name = "content_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<User> listContentAutor;
+    private List<User> listContentAutor;
     @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "content")
     private List<Commentariy> commentariyList;
+
+    public Content(){}
+
+    public void setListContentAutor(List<User> listContentAutor) {
+        this.listContentAutor = listContentAutor;
+    }
+
+    public List<User> getListContentAutor() {
+
+        return listContentAutor;
+    }
 
     public void setContentId(Integer contentId) {
         this.contentId = contentId;
@@ -52,14 +63,7 @@ public class Content {
         return contentDescription;
     }
 
-    public void setListContentAutor(Set<User> listContentAutor) {
-        this.listContentAutor = listContentAutor;
-    }
 
-    public Set<User> getListContentAutor() {
-
-        return listContentAutor;
-    }
 
     public List<Commentariy> getCommentariyList() {
         return commentariyList;

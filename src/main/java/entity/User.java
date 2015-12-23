@@ -1,6 +1,5 @@
 package entity;
 
-import org.hibernate.annotations.Entity;
 
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
@@ -23,21 +22,25 @@ public class User {
     private String login;
     @Column(name = "password")
     private String password;
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "userAutor")
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "userAutor")
     private List<Commentariy> commentariyList;
+
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinTable(name = "content_user", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "content_id"))
-    private Set<Content> contentList;
+    private List<Content> contentList;
+
     @Column(name = "dateReg")
     private Date dateReg;
     @Column(name = "dateLastVizit")
     private Date dateLastVisit;
 
-    public void setContentList(Set<Content> contentList) {
+    public User(){}
+
+    public void setContentList(List<Content> contentList) {
         this.contentList = contentList;
     }
 
-    public Set<Content> getContentList() {
+    public List<Content> getContentList() {
 
         return contentList;
     }

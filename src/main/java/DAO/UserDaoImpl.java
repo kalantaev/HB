@@ -67,7 +67,7 @@ public class UserDaoImpl implements UserDAO {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         User user = (User) session.get(User.class,id);
-        user.setDateLastVisit(new Date());
+//        user.setDateLastVisit(new Date());
         session.update(user);
         session.close();
 
