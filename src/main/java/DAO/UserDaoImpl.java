@@ -14,10 +14,12 @@ import java.util.Set;
  * Created by Администратор on 15.12.2015.
  */
 public class UserDaoImpl implements UserDAO {
+
     public void insertUser(User user) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(user);
+        session.getTransaction().commit();
         session.close();
     }
 
@@ -33,7 +35,7 @@ public class UserDaoImpl implements UserDAO {
     public User selectByLogin(String login) {
        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        User user = (User) session.createQuery("from User where login = "+login).uniqueResult();
+        User user = (User) session.createQuery("from User where login = '"+login+"'").uniqueResult();
         session.close();
         return user;
     }

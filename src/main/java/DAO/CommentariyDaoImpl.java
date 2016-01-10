@@ -12,9 +12,10 @@ import java.util.List;
  */
 public class CommentariyDaoImpl implements CommentariyDAO {
     public void saveComment(Commentariy com) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(com);
+        session.getTransaction().commit();
         session.close();
     }
 
@@ -46,6 +47,16 @@ public class CommentariyDaoImpl implements CommentariyDAO {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         commentariys = (List<Commentariy>)session.createQuery("from Commentariy  where userAutor ="+uaerId).list();
+        session.close();
+        return commentariys;
+    }
+
+    @Override
+    public List<Commentariy> getCommentByContentId(Integer contId) {
+        List<Commentariy> commentariys = new ArrayList<Commentariy>();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        commentariys = (List<Commentariy>)session.createQuery("from Commentariy  where content ="+contId).list();
         session.close();
         return commentariys;
     }

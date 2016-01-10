@@ -15,9 +15,10 @@ import java.util.Set;
  */
 public class ContentDaoImpl implements ContentDAO {
     public void addContent(Content content) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(content);
+        session.getTransaction().commit();
         session.close();
     }
 

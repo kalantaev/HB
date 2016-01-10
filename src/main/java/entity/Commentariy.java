@@ -10,7 +10,7 @@ public class Commentariy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
     private Integer CommentId;
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User userAutor;
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)

@@ -18,7 +18,7 @@ public class Main {
 //        SessionFactory sf = HibernateUtil.getSessionFactory();
 //        Session session = sf.openSession();
 //        session.beginTransaction();
-//
+////
 //        User user = prepareUser(1);
 //        session.save(user);
 //
@@ -43,14 +43,18 @@ public class Main {
 //        com2.setUserAutor(user1);
 //        com2.setContent(content);
 //        session.save(com2);
-//
+////
 //        session.getTransaction().commit();
 //        session.close();
-
-//
-       List<User> users = new UserDaoImpl().selectAllUser();
-        System.out.println(users.get(0).getLogin());
-        System.out.println(users.get(0).getUserId());
+            List<Commentariy> commentariys = new CommentariyDaoImpl().getCommentByContentId(1);
+            for (Commentariy c: commentariys){
+                System.out.println(c.getDescription());
+                System.out.println(c.getUserAutor().getLogin());
+            }
+//       List<User> users = new UserDaoImpl().selectAllUser();
+//        System.out.println(users.get(0).getLogin());
+//        System.out.println(users.get(0).getUserId());
+//        System.out.println(users.get(0).getCommentariyList().get(0).getDescription());
 //        System.out.println(user2.getLogin());
 //        System.out.println(user2.getCommentariyList().get(0).getDescription());
 //        List<Content> contentSet =  user2.getContentList();
@@ -78,8 +82,8 @@ public class Main {
 
     private static User prepareUser(int n) {
         User user = new User();
-        user.setLogin("This login"+n);
-        user.setPassword("This password"+ n);
+        user.setLogin("login"+n);
+        user.setPassword("password"+ n);
         user.setDateReg(new Date());
         user.setDateLastVisit(new Date());
         return user;
