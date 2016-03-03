@@ -3,9 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<html>
-<link rel="stylesheet" type="text/css" href="/HB/style.css"/>
-<style type="text/css">
+<html><head>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/style.css'/>" />
+</head>
+<%--<style type="text/css">
     .bloc1 {
         border: solid 1px dimgray;
         padding: 5px 20px 5px 20px;
@@ -24,7 +25,7 @@
         position: relative;
         top: 60px;
     }
-</style>
+</style>--%>
 <body>
 <h1 align="center">Начальная страница</h1>
 ${cookie}  ${errorMessage}
