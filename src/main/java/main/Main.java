@@ -1,9 +1,12 @@
-package entity;
+package main;
 
 import DAO.CommentariyDaoImpl;
 import DAO.ContentDaoImpl;
 import DAO.UserDAO;
 import DAO.UserDaoImpl;
+import entity.Commentariy;
+import entity.Content;
+import entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 

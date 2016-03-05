@@ -1,14 +1,10 @@
 package DAO;
 
 import entity.Content;
-import entity.HibernateUtil;
-import org.hibernate.Hibernate;
+import hibernate.HibernateUtil;
 import org.hibernate.Session;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 public class ContentDaoImpl implements ContentDAO {

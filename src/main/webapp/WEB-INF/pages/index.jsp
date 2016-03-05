@@ -5,31 +5,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Start pages</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/style.css'/>" />
+    <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/style.css'/>"/>
 </head>
 
 <body>
 <h1 align="center">START PAGES</h1>
-${cookie}  ${errorMessage}
+${cookie} ${errorMessage}
 <div class="bloc3">
-   <c:if test="${user.login==null}">
-    <form action="/HB/" method="post">
-        <input type="text" name="login"/><br/>
-        <input type="password" name="password"/><br/>
-        <input type="hidden" name="exit" value="0"/>
-        <input type="submit" value="Войти"/>
-    </form></c:if>
-    <c:if test="${user.login!=null}">
-    Приветствую ${user.login}<br/>
-    <form action="/HB/" method="post">
-        <input type="hidden" name="exit" value="1"/>
-        <input type="hidden" name="login" value="d"/><br/>
-        <input type="hidden" name="password" value="d"/><br/>
-        <input type="submit" value="Выход"/>
-    </form>
+    <c:if test="${user.login==null}">
+        <form action="/HB/" method="post">
+            <input type="text" name="login"/><br/>
+            <input type="password" name="password"/><br/>
+            <input type="hidden" name="exit" value="0"/>
+            <input type="submit" value="Войти"/>
+        </form>
+        <a href="/HB/registration/">Регистрация</a> <br/>
     </c:if>
-    <a href="/HB/login/">Авторизация</a><br/>
-    <a href="/HB/registration/">Регистрация</a> <br/>
+    <c:if test="${user.login!=null}">
+        Приветствую ${user.login}<br/>
+
+        <form action="/HB/" method="post">
+            <input type="hidden" name="exit" value="1"/>
+            <input type="hidden" name="login" value="d"/><br/>
+            <input type="hidden" name="password" value="d"/><br/>
+            <input type="submit" value="Выход"/>
+        </form>
+    </c:if>
+
+
     <a href="/HB/addcontent/">Добавить материал</a><br/>
     <a href="/HB/alluser/">Все пользователи</a>
 </div>

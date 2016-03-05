@@ -1,7 +1,7 @@
 package DAO;
 
 import entity.Commentariy;
-import entity.HibernateUtil;
+import hibernate.HibernateUtil;
 import org.hibernate.Session;
 
 import java.util.ArrayList;

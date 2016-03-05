@@ -1,14 +1,11 @@
 package DAO;
 
-import entity.Content;
-import entity.HibernateUtil;
+import hibernate.HibernateUtil;
 import entity.User;
 import org.hibernate.Session;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 
 public class UserDaoImpl implements UserDAO {

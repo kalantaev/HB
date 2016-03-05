@@ -14,82 +14,79 @@ import java.util.Set;
 @Table(name = "user2")
 public class User {
 
+    private Integer userId;
+    private String login;
+    private String password;
+    private List<Commentariy> commentariyList;
+    private List<Content> contentList;
+    private Date dateReg;
+    private Date dateLastVisit;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
-    private Integer userId;
-    @Column(name = "login")
-    private String login;
-    @Column(name = "password")
-    private String password;
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "userAutor")
-    private List<Commentariy> commentariyList;
-
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinTable(name = "content_user", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "content_id"))
-    private List<Content> contentList;
-
-    @Column(name = "dateReg")
-    private Date dateReg;
-    @Column(name = "dateLastVizit")
-    private Date dateLastVisit;
-
-    public User(){}
-
-    public void setContentList(List<Content> contentList) {
-        this.contentList = contentList;
-    }
-
-    public List<Content> getContentList() {
-
-        return contentList;
-    }
-
-    public void setCommentariyList(List<Commentariy> commentariyList) {
-        this.commentariyList = commentariyList;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setDateReg(Date dateReg) {
-        this.dateReg = dateReg;
-    }
-
-    public void setDateLastVisit(Date dateLastVisit) {
-        this.dateLastVisit = dateLastVisit;
+    public Integer getUserId() {
+        return userId;
     }
 
     public void setUserId(Integer id) {
         this.userId = id;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public List<Commentariy> getCommentariyList() {
-        return commentariyList;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
+    @Column(name = "login")
     public String getLogin() {
         return login;
     }
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "userAutor")
+    public List<Commentariy> getCommentariyList() {
+        return commentariyList;
+    }
+
+    public void setCommentariyList(List<Commentariy> commentariyList) {
+        this.commentariyList = commentariyList;
+    }
+
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinTable(name = "content_user", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "content_id"))
+    public List<Content> getContentList() {
+
+        return contentList;
+    }
+
+    public void setContentList(List<Content> contentList) {
+        this.contentList = contentList;
+    }
+
+    @Column(name = "dateReg")
     public Date getDateReg() {
         return dateReg;
     }
 
+    public void setDateReg(Date dateReg) {
+        this.dateReg = dateReg;
+    }
+
+    @Column(name = "dateLastVizit")
     public Date getDateLastVisit() {
         return dateLastVisit;
     }
+
+    public void setDateLastVisit(Date dateLastVisit) {
+        this.dateLastVisit = dateLastVisit;
+    }
+
 }
