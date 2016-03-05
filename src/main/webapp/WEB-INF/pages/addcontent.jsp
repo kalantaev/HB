@@ -3,19 +3,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<title>Страница добавления материала</title>
+<title>The page for adding material</title>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/style.css'/>" />
+
 <html>
 <body>
-<h1>Страница добавления материал</h1>
-<a href="/HB/">На главную</a>
+<h1>The page for adding material</h1>
+<a href="/HB/">to Home Page</a>
 
 <div align="center">
     ${errorMessage}
 
     <form action="/HB/addcontent/" method="post">
-        <input type="text" name="title" placeholder="Введите название материала" /><br/>
-        <input type="text"  name="description" placeholder="Введите содержимое материала" /><br/>
-        <input type="submit" value="Добавить иатериал"/>
+        <input type="text" name="title" placeholder="Enter the name of the content" /><br/>
+        <input type="text"  name="description" placeholder="Enter contents" /><br/>
+        <input type="submit" value="Add content"/>
     </form>
 </div>
 

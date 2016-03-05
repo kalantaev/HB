@@ -7,9 +7,7 @@ import org.hibernate.Session;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Администратор on 18.12.2015.
- */
+
 public class CommentariyDaoImpl implements CommentariyDAO {
     public void saveComment(Commentariy com) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -67,6 +65,12 @@ public class CommentariyDaoImpl implements CommentariyDAO {
         List<Commentariy> commentariys = new ArrayList<Commentariy>();
         commentariys = (List<Commentariy>) session.createQuery("from Commentariy ").list();
         session.close();
+
+        int i=5;
+        i+=i;
+        i++;
+
         return commentariys;
     }
 }
+

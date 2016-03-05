@@ -36,7 +36,7 @@ public class AddContentController {
        contentDAO.addContent(content);
 
 
-        model.addAttribute("loginMessage", "Материал " + content.getTitle() + " добавлен");
+        model.addAttribute("loginMessage", "Content " + content.getTitle() + " added");
         return "index";
 
 

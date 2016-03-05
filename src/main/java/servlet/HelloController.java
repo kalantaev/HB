@@ -55,17 +55,19 @@ public class HelloController {
         if (ex==0) {
             User user = userDAO.selectByLogin(login);
             if (user == null) {
-                model.addAttribute("errorMessage", "Пользователя с данным логином не существует");
+                model.addAttribute("errorMessage", "User with this login does not exist");
                 return "loginpage";
             }
             if (!password.equals(user.getPassword())) {
-                model.addAttribute("errorMessage", "Вы ввели неверный пароль. Введенный пароль " + password + ", пароль из БД " + user.getPassword());
+                model.addAttribute("errorMessage", "\n" +
+                        "You have entered the wrong password. The password entered " + password + ", \n" +
+                        "Password from the database " + user.getPassword());
 
                 return "loginpage";
             }
             List<Content> contents = contentDAO.getAllContent();
             model.addAttribute("contents", contents);
-            model.addAttribute("loginMessage", "Вы зашли как " + user.getLogin());
+            model.addAttribute("loginMessage", "You are logged in as " + user.getLogin());
             response.addCookie(new Cookie("id", user.getUserId().toString()));
             return "index";
         } else {

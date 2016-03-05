@@ -5,9 +5,7 @@ import entity.Content;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Администратор on 18.12.2015.
- */
+
 public interface ContentDAO {
 
     public void addContent(Content content);

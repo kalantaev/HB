@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.Cookie;
 import java.util.List;
 
-/**
- * Created by Администратор on 29.12.2015.
- */
 @Controller
 @RequestMapping(value = "/content/")
 public class ContentController {

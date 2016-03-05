@@ -10,9 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Администратор on 15.12.2015.
- */
+
 public class UserDaoImpl implements UserDAO {
 
     public void insertUser(User user) {

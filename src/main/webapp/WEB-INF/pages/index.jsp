@@ -3,31 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<html><head>
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/style.css'/>" />
+<head>
+    <title>Start pages</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/style.css'/>" />
 </head>
-<%--<style type="text/css">
-    .bloc1 {
-        border: solid 1px dimgray;
-        padding: 5px 20px 5px 20px;
-        margin-left: 200px
-    }
 
-    .bloc2 {
-        border: solid 1px burlywood;
-        background: gainsboro;
-        padding: 5px 20px 5px 20px;
-    }
-
-    .bloc3 {
-        padding: 0 30px 0 30px;
-        width: 230px;
-        position: relative;
-        top: 60px;
-    }
-</style>--%>
 <body>
-<h1 align="center">Начальная страница</h1>
+<h1 align="center">START PAGES</h1>
 ${cookie}  ${errorMessage}
 <div class="bloc3">
    <c:if test="${user.login==null}">

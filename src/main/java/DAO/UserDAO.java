@@ -4,9 +4,7 @@ import entity.User;
 
 import java.util.List;
 
-/**
- * Created by Администратор on 15.12.2015.
- */
+
 public interface UserDAO {
     public void insertUser(User user);
     public User selectByID(Integer id);

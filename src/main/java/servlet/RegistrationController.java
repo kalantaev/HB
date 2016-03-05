@@ -29,7 +29,7 @@ public class RegistrationController {
                            @RequestParam(value = "password") String password) {
         User userBD =userDAO.selectByLogin(login);
         if(userBD!=null){
-            model.addAttribute("errorMessage", "ѕользователь с данным логином уже существует");
+            model.addAttribute("errorMessage", "User with this login already exists");
             return "registration";
         }
         User user = new User();
@@ -40,7 +40,7 @@ public class RegistrationController {
         userDAO.insertUser(user);
 
 
-        model.addAttribute("loginMessage", "”четна€ запись с логином "+user.getLogin()+" создана");
+        model.addAttribute("loginMessage", "The account with the username "+user.getLogin()+" created");
         return "index";
 
     }

@@ -10,9 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Администратор on 18.12.2015.
- */
+
 public class ContentDaoImpl implements ContentDAO {
     public void addContent(Content content) {
         Session session = HibernateUtil.getSessionFactory().openSession();
