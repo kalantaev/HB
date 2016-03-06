@@ -1,5 +1,6 @@
-package DAO;
+package hibernate.DAOHibernateImpl;
 
+import DAO.CommentariyDAO;
 import entity.Commentariy;
 import hibernate.HibernateUtil;
 import org.hibernate.Session;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CommentariyDaoImpl implements CommentariyDAO {
+public class CommentariyDaoHibImpl implements CommentariyDAO {
     public void saveComment(Commentariy com) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();

@@ -9,9 +9,11 @@
 </head>
 
 <body>
-<h1 align="center">START PAGES</h1>
-${cookie} ${errorMessage}
-<div class="bloc3">
+<div class="all">
+<h1 class="top" align="center">START PAGES</h1>
+
+<div class="menu">
+     ${errorMessage}
     <c:if test="${user.login==null}">
         <form action="/HB/" method="post">
             <input type="text" name="login"/><br/>
@@ -36,8 +38,9 @@ ${cookie} ${errorMessage}
     <a href="/HB/addcontent/">Добавить материал</a><br/>
     <a href="/HB/alluser/">Все пользователи</a>
 </div>
-${loginMessage}
-<div class="bloc1">
+
+<div class="content">
+    ${loginMessage}
     <c:forEach var="content" items="${contents}">
         <div class="bloc2">
             <H2><a href="/HB/content/?id=${content.contentId}">${content.title}</a></H2>
@@ -45,6 +48,6 @@ ${loginMessage}
         </div>
     </c:forEach>
 </div>
-
+</div>
 </body>
 </html>

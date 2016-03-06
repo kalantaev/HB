@@ -1,5 +1,6 @@
-package DAO;
+package hibernate.DAOHibernateImpl;
 
+import DAO.ContentDAO;
 import entity.Content;
 import hibernate.HibernateUtil;
 import org.hibernate.Session;
@@ -7,7 +8,7 @@ import org.hibernate.Session;
 import java.util.List;
 
 
-public class ContentDaoImpl implements ContentDAO {
+public class ContentDaoHibImpl implements ContentDAO {
     public void addContent(Content content) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();

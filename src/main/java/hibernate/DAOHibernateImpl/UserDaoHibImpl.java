@@ -1,5 +1,6 @@
-package DAO;
+package hibernate.DAOHibernateImpl;
 
+import DAO.UserDAO;
 import hibernate.HibernateUtil;
 import entity.User;
 import org.hibernate.Session;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class UserDaoImpl implements UserDAO {
+public class UserDaoHibImpl implements UserDAO {
 
     public void insertUser(User user) {
         Session session = HibernateUtil.getSessionFactory().openSession();

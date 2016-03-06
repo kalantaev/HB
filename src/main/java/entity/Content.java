@@ -1,5 +1,7 @@
 package entity;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -35,7 +37,8 @@ public class Content {
         this.title = title;
     }
 
-    @Column(name = "description")
+    @Column(name = "description", length = 1000)
+    @Type(type = "text")
     public String getContentDescription() {
         return contentDescription;
     }

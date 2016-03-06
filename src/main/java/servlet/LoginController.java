@@ -1,7 +1,6 @@
 package servlet;
 
 import DAO.UserDAO;
-import DAO.UserDaoImpl;
 import entity.User;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;

@@ -8,7 +8,7 @@ public class HibernateUtil {
 
     private static SessionFactory sessionFactory;
 
-    public static SessionFactory getSessionFactory(){
+    public static SessionFactory getSessionFactory(){ //todo try catch
         if(sessionFactory == null){
             sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
         }

@@ -1,14 +1,9 @@
 package main;
 
-import DAO.CommentariyDaoImpl;
-import DAO.ContentDaoImpl;
 import DAO.UserDAO;
-import DAO.UserDaoImpl;
 import entity.Commentariy;
 import entity.Content;
 import entity.User;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import java.util.*;
 
@@ -17,6 +12,7 @@ public class Main {
     private UserDAO userDAO;
 
     public static void main(String[] args) {
+
 
 //        SessionFactory sf = HibernateUtil.getSessionFactory();
 //        Session session = sf.openSession();
@@ -49,11 +45,11 @@ public class Main {
 ////
 //        session.getTransaction().commit();
 //        session.close();
-            List<Commentariy> commentariys = new CommentariyDaoImpl().getCommentByContentId(1);
+     /*       List<Commentariy> commentariys = new CommentariyDaoHibImpl().getCommentByContentId(1);
             for (Commentariy c: commentariys){
                 System.out.println(c.getDescription());
                 System.out.println(c.getUserAutor().getLogin());
-            }
+            }*/
 //       List<User> users = new UserDaoImpl().selectAllUser();
 //        System.out.println(users.get(0).getLogin());
 //        System.out.println(users.get(0).getUserId());

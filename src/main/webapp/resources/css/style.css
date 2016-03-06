@@ -5,9 +5,10 @@
 }
 
 .bloc2 {
-    border: solid 1px burlywood;
-    background: gainsboro;
-    padding: 5px 20px 5px 20px;
+    border: solid 1px #2042de;
+    border-radius:6px;
+    margin-bottom: 10px;
+    background-color: #f1f1ff;
 }
 
 .bloc3 {
@@ -15,4 +16,39 @@
     width: 230px;
     position: relative;
     top: 60px;
+}
+
+
+.content{
+
+    width:79%;float: right;
+    padding-bottom:32000px; margin-bottom:-32000px;
+    border-radius:6px;
+}
+.menu{
+    background-color: rgb(227, 227, 255);
+    width:20%; float: left;
+
+    border-radius:6px;
+}
+.top{
+    background-color: #e0dcff;
+    clear:both;
+    float:left;
+    width:100%;
+    border-radius:6px;
+}
+.footer{
+    clear:both;
+    float:left;
+    width:100%;
+}
+.all{
+    overflow:hidden;
+}
+.form{
+    text-align: center;
+}
+.link-content{
+    color: #2fe133;
 }

@@ -3,8 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id = "userDAO" class="DAO.UserDaoImpl"/>
-    <bean id = "contentDAO" class="DAO.ContentDaoImpl"/>
-    <bean id="commentariyDAO" class="DAO.CommentariyDaoImpl"/>
+    <bean id = "userDAO" class="hibernate.DAOHibernateImpl.UserDaoHibImpl"/>
+    <bean id = "contentDAO" class="hibernate.DAOHibernateImpl.ContentDaoHibImpl"/>
+    <bean id="commentariyDAO" class="hibernate.DAOHibernateImpl.CommentariyDaoHibImpl"/>
 
     </beans>

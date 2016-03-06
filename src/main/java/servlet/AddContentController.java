@@ -1,16 +1,12 @@
 package servlet;
 
 import DAO.ContentDAO;
-import DAO.ContentDaoImpl;
-import DAO.UserDaoImpl;
 import entity.Content;
-import entity.User;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 
 @Controller
 @RequestMapping(value = "/addcontent/")
@@ -30,10 +26,11 @@ public class AddContentController {
     public String registration(ModelMap model,
                                @RequestParam(value = "title") String title,
                                @RequestParam(value = "description") String description) {
+
         Content content = new Content();
         content.setTitle(title);
         content.setContentDescription(description);
-       contentDAO.addContent(content);
+        contentDAO.addContent(content);
 
 
         model.addAttribute("loginMessage", "Content " + content.getTitle() + " added");

@@ -24,7 +24,7 @@
 
         <form action="/HB/content/" method="post">
             <input type="hidden" name="id" value="${content.contentId}"/>
-            <textarea name="description" rows="4" cols="50"></textarea><br/>
+            <textarea name="description"  rows="4" cols="50"></textarea><br/>
             <input type="submit" value="Добавить комментарий"/>
         </form>
     </div>
