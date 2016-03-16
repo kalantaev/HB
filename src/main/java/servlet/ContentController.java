@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping(value = "/content/")
 public class ContentController {
 
-    ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("servise.xml");
+    ClassPathXmlApplicationContext ctx = ServletUtil.getContext();
     private ContentDAO contentDAO = (ContentDAO) ctx.getBean("contentDAO");
     private CommentariyDAO commentariyDAO = (CommentariyDAO) ctx.getBean("commentariyDAO");
     private UserDAO userDAO = (UserDAO) ctx.getBean("userDAO");

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(value = "/login/")
 
 public class LoginController {
-    ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("servise.xml");
+    ClassPathXmlApplicationContext ctx = ServletUtil.getContext();
     private UserDAO userDAO = (UserDAO) ctx.getBean("userDAO");
     @RequestMapping(method = RequestMethod.GET)
     public String showLoginForm(ModelMap model) {

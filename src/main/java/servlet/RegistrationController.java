@@ -16,7 +16,7 @@ import java.util.Date;
 @RequestMapping(value = "/registration/")
 
 public class RegistrationController {
-    ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("servise.xml");
+    ClassPathXmlApplicationContext ctx = ServletUtil.getContext();
     private UserDAO userDAO = (UserDAO) ctx.getBean("userDAO");
     @RequestMapping(method = RequestMethod.GET)
     public String getRegForm(ModelMap model){

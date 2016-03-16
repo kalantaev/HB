@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/alluser/")
 public class AllUserController {
 
-    ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("servise.xml");
+    ClassPathXmlApplicationContext ctx = ServletUtil.getContext();
     private UserDAO userDAO = (UserDAO) ctx.getBean("userDAO");
 
     @RequestMapping(method = RequestMethod.GET)

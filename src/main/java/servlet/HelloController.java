@@ -8,7 +8,6 @@ import entity.User;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +20,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/")
 public class HelloController {
-    ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("servise.xml");
+    ClassPathXmlApplicationContext ctx = ServletUtil.getContext();
     private ContentDAO contentDAO = (ContentDAO) ctx.getBean("contentDAO");
     private UserDAO userDAO = (UserDAO) ctx.getBean("userDAO");
 

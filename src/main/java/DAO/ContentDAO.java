@@ -3,7 +3,6 @@ package DAO;
 import entity.Content;
 
 import java.util.List;
-import java.util.Set;
 
 
 public interface ContentDAO {
