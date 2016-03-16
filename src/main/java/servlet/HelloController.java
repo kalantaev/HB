@@ -20,9 +20,9 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/")
 public class HelloController {
-    ClassPathXmlApplicationContext ctx = ServletUtil.getContext();
-    private ContentDAO contentDAO = (ContentDAO) ctx.getBean("contentDAO");
-    private UserDAO userDAO = (UserDAO) ctx.getBean("userDAO");
+
+    private ContentDAO contentDAO = (ContentDAO) ServletUtil.getContext().getBean("contentDAO");
+    private UserDAO userDAO = (UserDAO) ServletUtil.getContext().getBean("userDAO");
 
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model, HttpServletRequest request) {

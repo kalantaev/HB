@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @SessionAttributes("userId")
 public class AddContentController {
 
-    ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("servise.xml");
-    private ContentDAO contentDAO = (ContentDAO) ctx.getBean("contentDAO");
+    private ContentDAO contentDAO = (ContentDAO) ServletUtil.getContext().getBean("contentDAO");
 
     @RequestMapping(method = RequestMethod.GET)
     public String showAddContentForm(ModelMap model) {

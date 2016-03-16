@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/alluser/")
 public class AllUserController {
 
-    ClassPathXmlApplicationContext ctx = ServletUtil.getContext();
-    private UserDAO userDAO = (UserDAO) ctx.getBean("userDAO");
+
+    private UserDAO userDAO = (UserDAO) ServletUtil.getContext().getBean("userDAO");
 
     @RequestMapping(method = RequestMethod.GET)
     public String getAllUser(ModelMap model){

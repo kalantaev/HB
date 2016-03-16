@@ -17,10 +17,10 @@ import java.util.List;
 @RequestMapping(value = "/content/")
 public class ContentController {
 
-    ClassPathXmlApplicationContext ctx = ServletUtil.getContext();
-    private ContentDAO contentDAO = (ContentDAO) ctx.getBean("contentDAO");
-    private CommentariyDAO commentariyDAO = (CommentariyDAO) ctx.getBean("commentariyDAO");
-    private UserDAO userDAO = (UserDAO) ctx.getBean("userDAO");
+
+    private ContentDAO contentDAO = (ContentDAO) ServletUtil.getContext().getBean("contentDAO");
+    private CommentariyDAO commentariyDAO = (CommentariyDAO) ServletUtil.getContext().getBean("commentariyDAO");
+    private UserDAO userDAO = (UserDAO) ServletUtil.getContext().getBean("userDAO");
 
     @RequestMapping(method = RequestMethod.GET, params = "id")
     public String getContent(ModelMap model, @RequestParam(value = "id") String id){
