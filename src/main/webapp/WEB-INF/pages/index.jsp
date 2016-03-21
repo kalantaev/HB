@@ -18,7 +18,6 @@
         <form action="/HB/" method="post">
             <input type="text" name="login"/><br/>
             <input type="password" name="password"/><br/>
-            <input type="hidden" name="exit" value="0"/>
             <input type="submit" value="Войти"/>
         </form>
         <a href="/HB/registration/">Регистрация</a> <br/>
@@ -26,10 +25,8 @@
     <c:if test="${user.login!=null}">
         Приветствую ${user.login}<br/>
 
-        <form action="/HB/" method="post">
+        <form action="/HB/exit" method="post">
             <input type="hidden" name="exit" value="1"/>
-            <input type="hidden" name="login" value="d"/><br/>
-            <input type="hidden" name="password" value="d"/><br/>
             <input type="submit" value="Выход"/>
         </form>
     </c:if>

@@ -8,75 +8,63 @@ import entity.User;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
-@RequestMapping(value = "/")
 public class HelloController {
 
     private ContentDAO contentDAO = (ContentDAO) ServletUtil.getContext().getBean("contentDAO");
     private UserDAO userDAO = (UserDAO) ServletUtil.getContext().getBean("userDAO");
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String printWelcome(ModelMap model, HttpServletRequest request) {
-        List<Content> contents = contentDAO.getAllContent();
-        model.addAttribute("contents", contents);
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView printWelcome(HttpServletRequest request) {
+        Map<String, Object> mapModel = new HashMap<String, Object>();
+        mapModel.put("contents", contentDAO.getAllContent());
+        if (request.getCookies() != null) {
+            for (Cookie cookie : request.getCookies()) {
                 if (cookie.getName().equals("id")) {
-                    model.addAttribute("cookie", cookie.getValue());
-                    if (cookie.getValue() != null| !cookie.getValue().equals("0")) {
-                        User user = userDAO.selectByID(new Integer(cookie.getValue()));
-                        model.addAttribute("user", user);
+                    if (cookie.getValue() != null | !cookie.getValue().equals("0")) {
+                        mapModel.put("user", userDAO.selectByID(new Integer(cookie.getValue())));
+                    } else {
+                        mapModel.put("user", new User());
                     }
 
                 }
             }
         }
-        return "index";
+        return new ModelAndView("index", mapModel);
     }
 
-    @RequestMapping(method = RequestMethod.POST, params = {"login", "password", "exit"})
-    public String Logining(ModelMap model,
-                           HttpServletResponse response,
-                           @RequestParam(value = "login") String login,
-                           @RequestParam(value = "password") String password,
-                           @RequestParam(value = "exit") String exit) {
-        int ex = new Integer(exit);
-        if (ex==0) {
-            User user = userDAO.selectByLogin(login);
-            if (user == null) {
-                model.addAttribute("errorMessage", "User with this login does not exist");
-                return "loginpage";
-            }
-            if (!password.equals(user.getPassword())) {
-                model.addAttribute("errorMessage", "\n" +
-                        "You have entered the wrong password. The password entered " + password + ", \n" +
-                        "Password from the database " + user.getPassword());
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ModelAndView logining(@ModelAttribute("user") User userForm, HttpServletResponse response) {
 
-                return "loginpage";
-            }
-            List<Content> contents = contentDAO.getAllContent();
-            model.addAttribute("contents", contents);
-            model.addAttribute("loginMessage", "You are logged in as " + user.getLogin());
-            response.addCookie(new Cookie("id", user.getUserId().toString()));
-            return "index";
-        } else {
-            List<Content> contents = contentDAO.getAllContent();
-            model.addAttribute("contents", contents);
-            response.addCookie(new Cookie("id", "0"));
-
-            return "index";
-
+        User userDB = userDAO.selectByLogin(userForm.getLogin());
+        if (userDB == null) {
+            String stringError = "User with this login does not exist";
+            return new ModelAndView("loginpage", "errorMessage", stringError);
         }
-
+        if (!userForm.getPassword().equals(userDB.getPassword())) {
+            String stringError = "You have entered the wrong password";
+            return new ModelAndView("loginpage", "errorMessage", stringError);
+        }
+        response.addCookie(new Cookie("id", userDB.getUserId().toString()));
+        return new ModelAndView("index", "contents", contentDAO.getAllContent());
     }
+    @RequestMapping(value = "/exit", method = RequestMethod.POST)
+    public ModelAndView exit(HttpServletResponse response){
+        response.addCookie(new Cookie("id", "0"));
+        return new ModelAndView("index", "contents", contentDAO.getAllContent());
+    }
+
 }
