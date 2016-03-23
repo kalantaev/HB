@@ -8,6 +8,7 @@ import entity.User;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,16 +30,15 @@ public class HelloController {
     private UserDAO userDAO = (UserDAO) ServletUtil.getContext().getBean("userDAO");
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView printWelcome(HttpServletRequest request) {
-        Map<String, Object> mapModel = new HashMap<String, Object>();
-        mapModel.put("contents", contentDAO.getAllContent());
+    public ModelAndView printWelcome(HttpServletRequest request, ModelMap mapModel) {
+        mapModel.addAttribute("contents", contentDAO.getAllContent());
         if (request.getCookies() != null) {
             for (Cookie cookie : request.getCookies()) {
                 if (cookie.getName().equals("id")) {
                     if (cookie.getValue() != null | !cookie.getValue().equals("0")) {
-                        mapModel.put("user", userDAO.selectByID(new Integer(cookie.getValue())));
+                        mapModel.addAttribute("user", userDAO.selectByID(new Integer(cookie.getValue())));
                     } else {
-                        mapModel.put("user", new User());
+                        mapModel.addAttribute("user", new User());
                     }
 
                 }
@@ -47,8 +48,11 @@ public class HelloController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ModelAndView logining(@ModelAttribute("user") User userForm, HttpServletResponse response) {
+    public ModelAndView logining(@Valid @ModelAttribute("user") User userForm, BindingResult bindingResult, HttpServletResponse response) {
 
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("loginpage");
+        }
         User userDB = userDAO.selectByLogin(userForm.getLogin());
         if (userDB == null) {
             String stringError = "User with this login does not exist";
@@ -67,4 +71,10 @@ public class HelloController {
         return new ModelAndView("index", "contents", contentDAO.getAllContent());
     }
 
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    public String error(){
+
+        return "error";
+    }
+   
 }

@@ -19,4 +19,27 @@
     <mvc:annotation-driven />
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/*" />-->
+            <!--<bean class="interceprors.ErrorIntercepror" />-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+
+
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="/WEB-INF/locales/messages" />
+        <property name="defaultEncoding" value="cp1251" />
+
+    </bean>
+
+    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="langv" />
+    </bean>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="en" />
+    </bean>
+
 </beans>

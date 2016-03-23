@@ -12,7 +12,8 @@ public class Main {
     private UserDAO userDAO;
 
     public static void main(String[] args) {
-
+            String s = "string # %s";
+        System.out.println(String.format(s, 2));
 
 //        SessionFactory sf = HibernateUtil.getSessionFactory();
 //        Session session = sf.openSession();
