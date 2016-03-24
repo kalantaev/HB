@@ -1,8 +1,7 @@
-package servlet;
+package controllers;
 
 import DAO.UserDAO;
 import entity.User;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;

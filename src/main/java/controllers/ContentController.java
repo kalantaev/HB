@@ -1,9 +1,8 @@
-package servlet;
+package controllers;
 
 import DAO.*;
 import entity.Commentariy;
 import entity.Content;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package servlet;
+package controllers;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

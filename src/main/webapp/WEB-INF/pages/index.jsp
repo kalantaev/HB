@@ -52,8 +52,8 @@
     <a href="/HB/addcontent/">Добавить материал</a><br/>
     <a href="/HB/alluser/">Все пользователи</a>
     <span style="float: right">
-				<a href="?langv=en">en</a>
-				<a href="?langv=ua">ru</a>
+				<a href="?lang=en">en</a>
+				<a href="?lang=ru">ru</a>
 			</span>
 </div>
 

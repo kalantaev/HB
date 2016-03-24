@@ -1,4 +1,4 @@
-package servlet;
+package controllers;
 
 import DAO.ContentDAO;
 import entity.Content;
