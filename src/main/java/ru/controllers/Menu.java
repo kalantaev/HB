@@ -59,36 +59,31 @@ public class Menu {
     public ModelAndView logining(@ModelAttribute("user") User userForm, HttpServletResponse response, HttpServletRequest request) {
         log.info(request.getContextPath());
         ModelMap mapModel = new ModelMap();
-
-        Enumeration<String> s = request.getParameterNames();
-        String url = "?";
-        while (s.hasMoreElements()) {
-            String np = s.nextElement();
-            if (np.equals("lang")) continue;
-            url= url+np+"="+request.getParameter(np)+"&";
-        }
-        mapModel.addAttribute("url", url);
+                log.info(request.getParameter("id"));
 
         User userDB = userDAO.selectByLogin(userForm.getLogin());
+        mapModel.addAttribute("user", userDB);
+
         if (userDB == null) {
 
             String stringError = "User with this login does not exist";
             mapModel.addAttribute("errorMessage", stringError);
-            return new ModelAndView("leftblock", mapModel);
+            return new ModelAndView("redirect:/", mapModel);
         }
         else if (!userForm.getPassword().equals(userDB.getPassword())){
+            userDB.setLogin(null);
             String stringError = "You have entered the wrong password";
             mapModel.addAttribute("errorMessage", stringError);
-            return new ModelAndView("/leftblock", mapModel);
+            return new ModelAndView("redirect:/", mapModel);
         }
         response.addCookie(new Cookie("id", userDB.getUserId().toString()));
-        return new ModelAndView("leftblock", mapModel);
+        return new ModelAndView("redirect:/", mapModel);
     }
     @RequestMapping(value = "/exit", method = RequestMethod.POST)
     public ModelAndView exit(HttpServletResponse response, HttpServletRequest req){
         response.addCookie(new Cookie("id", "0"));
 
-        return new ModelAndView("leftblock");
+        return new ModelAndView("redirect:/");
     }
 
 

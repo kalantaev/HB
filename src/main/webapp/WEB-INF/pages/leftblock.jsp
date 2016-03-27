@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <div class="menu">
-    ${errorMessage}
+  <span style="color: red" >${errorMessage}</span>
     <c:if test="${user.login==null}">
 
         <form action="/HB/leftblock" method="post">

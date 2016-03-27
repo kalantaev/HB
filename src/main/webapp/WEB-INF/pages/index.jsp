@@ -15,47 +15,8 @@
 <div class="all">
     <h1 class="top" align="center"><spring:message code="start"/></h1>
 
-    <div class="menu">
-        ${errorMessage}
-        <c:if test="${user.login==null}">
+    <jsp:include page="${request.contextPath}/leftblock"></jsp:include>
 
-            <%--<form:form method="POST" modelAttribute="user"  action="/HB/"  >--%>
-
-            <%--<form:label path="login"></form:label>--%>
-            <%--<form:input path="login" />--%>
-            <%--<form:errors path="login" />--%>
-
-            <%--<form:label path="password">Password:</form:label>--%>
-            <%--<form:password path="password" />--%>
-            <%--<form:errors path="password" cssClass="error"/>--%>
-            <%--<input type="submit" value="Login" >--%>
-            <%--</form:form>--%>
-
-
-            <form action="/HB/" method="post">
-                <input type="text" name="login"/><br/>
-                <input type="password" name="password"/><br/>
-                <input type="submit" value="<spring:message code="enter"/>"/>
-            </form>
-            <a href="/HB/registration/"><spring:message code="registration"/></a> <br/>
-        </c:if>
-        <c:if test="${user.login!=null}">
-            <spring:message code="hello"/>  ${user.login}<br/>
-
-            <form action="/HB/exit" method="post">
-
-                <input type="submit" value="<spring:message code="exit"/>"/>
-            </form>
-        </c:if>
-
-
-        <a href="/HB/addcontent/"><spring:message code="add_content"/></a><br/>
-        <a href="/HB/alluser/"><spring:message code="all_user"/></a>
-    <span style="float: right">
-				<a href="?lang=en">en</a>
-				<a href="?lang=ru">ru</a>
-			</span>
-    </div>
 
     <div class="content">
         ${loginMessage}

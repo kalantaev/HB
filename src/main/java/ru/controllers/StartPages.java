@@ -27,6 +27,7 @@ public class StartPages {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView printWelcome(HttpServletRequest request, ModelMap mapModel) {
+        if (request.getParameter("errorMessage")!=null) mapModel.addAttribute("errorMessage", request.getParameter("errorMessage"));
         mapModel.addAttribute("contents", contentDAO.getAllContent());
         if (request.getCookies() != null) {
             for (Cookie cookie : request.getCookies()) {
