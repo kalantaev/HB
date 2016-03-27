@@ -1,8 +1,9 @@
-package controllers;
+package ru.controllers;
 
 
 import DAO.UserDAO;
 import entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +15,9 @@ import java.util.Date;
 @Controller
 @RequestMapping(value = "/registration/")
 
-public class RegistrationController {
-
-    private UserDAO userDAO = (UserDAO) ServletUtil.getContext().getBean("userDAO");
+public class Registration {
+@Autowired
+    private UserDAO userDAO;
     @RequestMapping(method = RequestMethod.GET)
     public String getRegForm(ModelMap model){
         return "registration";

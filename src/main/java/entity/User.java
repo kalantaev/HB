@@ -8,13 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 
 @Entity
-@Table(name = "user2")
+@Table(name = "user")
 
 public class User {
 
@@ -69,8 +70,11 @@ public class User {
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinTable(name = "content_user", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "content_id"))
     public List<Content> getContentList() {
-
-        return contentList;
+        if (contentList!=null){
+        return contentList;}
+        else {
+            return new ArrayList<Content>();
+        }
     }
 
     public void setContentList(List<Content> contentList) {

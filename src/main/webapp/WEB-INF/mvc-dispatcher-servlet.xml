@@ -9,7 +9,9 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="controllers"/>
+    <!--<import resource="classpath:servise.xml"/>-->
+
+    <context:component-scan base-package="ru"/>
 
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -19,12 +21,6 @@
     <mvc:annotation-driven />
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
-    <!--<mvc:interceptors>-->
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/*" />-->
-            <!--<bean class="interceprors.ErrorIntercepror" />-->
-        <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
 
 
     <bean id="messageSource"
@@ -38,8 +34,16 @@
         <property name="paramName" value="lang" />
     </bean>
 
-    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-        <property name="defaultLocale" value="ru" />
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="en"/>
     </bean>
+
+
+
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="lang" />
+        </bean>
+    </mvc:interceptors>
 
 </beans>

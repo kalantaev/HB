@@ -1,7 +1,8 @@
-package controllers;
+package ru.controllers;
 
 import DAO.UserDAO;
 import entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(value = "/login/")
 
 public class LoginController {
-
-    private UserDAO userDAO = (UserDAO) ServletUtil.getContext().getBean("userDAO");
+    @Autowired
+    private UserDAO userDAO;
     @RequestMapping(method = RequestMethod.GET)
     public String showLoginForm(ModelMap model) {
         return "loginpage";

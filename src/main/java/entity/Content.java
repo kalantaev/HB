@@ -3,6 +3,7 @@ package entity;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -50,8 +51,12 @@ public class Content {
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinTable(name = "content_user", joinColumns = @JoinColumn(name = "content_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
     public List<User> getListContentAutor() {
-
+        if(listContentAutor!=null){
         return listContentAutor;
+        }
+        else {
+            return new ArrayList<User>();
+        }
     }
 
     public void setListContentAutor(List<User> listContentAutor) {

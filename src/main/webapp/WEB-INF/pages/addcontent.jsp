@@ -13,11 +13,11 @@
 <a href="/HB/">to Home Page</a>
 
 <div align="center">
-    ${errorMessage}
+    ${message}
 
     <form action="/HB/addcontent/" method="post">
         <input type="text" name="title" placeholder="Enter the name of the content" /><br/>
-        <textarea  name="description" placeholder="Enter contents" rows="4" cols="50"></textarea><br/>
+        <textarea  name="contentDescription" placeholder="Enter contents" rows="4" cols="50"></textarea><br/>
         <input type="submit" value="Add content"/>
     </form>
 </div>

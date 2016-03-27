@@ -20,7 +20,7 @@
         <input type="submit" value="Зарегестрироваться"/>
     </form>
 </div>
-<div align="center">Если у вас есть учетная запись, вы можете <a href="/HB/login/">войти</a></div>
+
 
 </body>
 </html>

@@ -1,9 +1,14 @@
 package main;
 
+import DAO.ContentDAO;
 import DAO.UserDAO;
 import entity.Commentariy;
 import entity.Content;
 import entity.User;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import ru.hibernate.DAOHibernateImpl.ContentDaoHibImpl;
+import ru.hibernate.HibernateUtil;
 
 import java.util.*;
 
@@ -12,13 +17,14 @@ public class Main {
     private UserDAO userDAO;
 
     public static void main(String[] args) {
-            String s = "string # %s";
-        System.out.println(String.format(s, 2));
 
-//        SessionFactory sf = HibernateUtil.getSessionFactory();
-//        Session session = sf.openSession();
-//        session.beginTransaction();
-////
+        SessionFactory sf = HibernateUtil.getSessionFactory();
+        Session session = sf.openSession();
+        session.beginTransaction();
+
+        ContentDAO contentDAO = new ContentDaoHibImpl();
+        contentDAO.remuveContentById(28);
+//
 //        User user = prepareUser(1);
 //        session.save(user);
 //

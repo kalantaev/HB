@@ -1,14 +1,15 @@
-package hibernate.DAOHibernateImpl;
+package ru.hibernate.DAOHibernateImpl;
 
 import DAO.CommentariyDAO;
 import entity.Commentariy;
-import hibernate.HibernateUtil;
+import org.springframework.stereotype.Service;
+import ru.hibernate.HibernateUtil;
 import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Service
 public class CommentariyDaoHibImpl implements CommentariyDAO {
     public void saveComment(Commentariy com) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -23,6 +24,7 @@ public class CommentariyDaoHibImpl implements CommentariyDAO {
         session.beginTransaction();
         Commentariy coment = (Commentariy) session.get(Commentariy.class,id);
         session.delete(coment);
+        session.getTransaction().commit();
         session.close();
     }
 

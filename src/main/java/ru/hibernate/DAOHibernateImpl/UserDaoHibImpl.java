@@ -1,14 +1,15 @@
-package hibernate.DAOHibernateImpl;
+package ru.hibernate.DAOHibernateImpl;
 
 import DAO.UserDAO;
-import hibernate.HibernateUtil;
+import ru.hibernate.HibernateUtil;
 import entity.User;
 import org.hibernate.Session;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Service
 public class UserDaoHibImpl implements UserDAO {
 
     public void insertUser(User user) {
@@ -22,16 +23,16 @@ public class UserDaoHibImpl implements UserDAO {
     public User selectByID(Integer id) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        User user = (User) session.get(User.class,id);
+        User user = (User) session.get(User.class, id);
 
         session.close();
         return user;
     }
 
     public User selectByLogin(String login) {
-       Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        User user = (User) session.createQuery("from User where login = '"+login+"'").uniqueResult();
+        User user = (User) session.createQuery("from User where login = '" + login + "'").uniqueResult();
         session.close();
         return user;
     }
@@ -49,7 +50,7 @@ public class UserDaoHibImpl implements UserDAO {
     public void deleteUserByID(Integer id) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        User user = (User) session.get(User.class,id);
+        User user = (User) session.get(User.class, id);
         session.delete(user);
         session.close();
     }
@@ -64,7 +65,7 @@ public class UserDaoHibImpl implements UserDAO {
     public void updateLastVisitByID(Integer id) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        User user = (User) session.get(User.class,id);
+        User user = (User) session.get(User.class, id);
 //        user.setDateLastVisit(new Date());
         session.update(user);
         session.close();

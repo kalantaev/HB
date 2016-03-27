@@ -1,9 +1,8 @@
-package controllers;
+package ru.controllers;
 
-
-import DAO.ContentDAO;
 import DAO.UserDAO;
 import entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -17,15 +16,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+/**
+ * Created by Администратор on 27.03.2016.
+ */
 @Controller
-public class HelloController {
 
-    private ContentDAO contentDAO = (ContentDAO) ServletUtil.getContext().getBean("contentDAO");
-    private UserDAO userDAO = (UserDAO) ServletUtil.getContext().getBean("userDAO");
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+public class Menu {
+    @Autowired
+    private UserDAO userDAO;
+    @RequestMapping(value = "/leftblock", method = RequestMethod.GET)
     public ModelAndView printWelcome(HttpServletRequest request, ModelMap mapModel) {
-        mapModel.addAttribute("contents", contentDAO.getAllContent());
+
         if (request.getCookies() != null) {
             for (Cookie cookie : request.getCookies()) {
                 if (cookie.getName().equals("id")) {
@@ -38,37 +39,31 @@ public class HelloController {
                 }
             }
         }
-        return new ModelAndView("index", mapModel);
+        return new ModelAndView("leftblock", mapModel);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/leftblock", method = RequestMethod.POST)
     public ModelAndView logining(@Valid @ModelAttribute("user") User userForm, BindingResult bindingResult, HttpServletResponse response) {
 
         if (bindingResult.hasErrors()) {
-            return new ModelAndView("loginpage");
+            return new ModelAndView("leftblock");
         }
         User userDB = userDAO.selectByLogin(userForm.getLogin());
         if (userDB == null) {
             String stringError = "User with this login does not exist";
-            return new ModelAndView("loginpage", "errorMessage", stringError);
+            return new ModelAndView("leftblock", "errorMessage", stringError);
         }
         if (!userForm.getPassword().equals(userDB.getPassword())) {
             String stringError = "You have entered the wrong password";
-            return new ModelAndView("loginpage", "errorMessage", stringError);
+            return new ModelAndView("leftblock", "errorMessage", stringError);
         }
         response.addCookie(new Cookie("id", userDB.getUserId().toString()));
-        return new ModelAndView("index", "contents", contentDAO.getAllContent());
+        return new ModelAndView("leftblock");
     }
     @RequestMapping(value = "/exit", method = RequestMethod.POST)
-    public ModelAndView exit(HttpServletResponse response){
+    public ModelAndView exit(HttpServletResponse response, HttpServletRequest req){
         response.addCookie(new Cookie("id", "0"));
-        return new ModelAndView("index", "contents", contentDAO.getAllContent());
+        response.addCookie(new Cookie("pathii", req.getContextPath()));
+        return new ModelAndView("leftblock");
     }
-
-    @RequestMapping(value = "/error", method = RequestMethod.GET)
-    public String error(){
-
-        return "error";
-    }
-   
 }

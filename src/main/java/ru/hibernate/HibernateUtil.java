@@ -1,4 +1,4 @@
-package hibernate;
+package ru.hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
