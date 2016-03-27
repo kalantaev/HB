@@ -36,7 +36,7 @@ public class Delete {
         } catch (SessionException e) {
         }
         if (request.getParameter("id_content") == null) {
-        return "content";}
+        return "redirect:/content/?id="+request.getParameter("id");}
         else {
         return "redirect:/";}
     }

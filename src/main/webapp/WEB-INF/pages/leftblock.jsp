@@ -6,7 +6,7 @@
     ${errorMessage}
     <c:if test="${user.login==null}">
 
-        <form action="leftblock" method="post">
+        <form action="/HB/leftblock" method="post">
             <input type="text" name="login"/><br/>
             <input type="password" name="password"/><br/>
             <input type="submit" value="<spring:message code="enter"/>"/>
@@ -26,7 +26,7 @@
     <a href="/HB/addcontent/"><spring:message code="add_content"/></a><br/>
     <a href="/HB/alluser/"><spring:message code="all_user"/></a>
     <span style="float: right">
-				<a href="?lang=en">en</a>
-				<a href="?lang=ru">ru</a>
+				<a href="${url}lang=en">en</a>
+				<a href="${url}lang=ru">ru</a>
 			</span>
 </div>
