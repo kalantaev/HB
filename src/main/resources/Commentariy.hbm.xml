@@ -3,13 +3,13 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="entity">
-    <class name="Commentariy" table="comments">
+    <class name="ru.entity.Commentariy" table="comments">
         <id name="commentId" column="comment_id">
             <generator class="native"/>
         </id>
         <property name="description" column="description"/>
-        <many-to-one name="userAutor" column="user_id"  lazy="false" class="entity.User"/>
-        <many-to-one name="content" column="content_id"  lazy="false" class="entity.Content"/>
+        <many-to-one name="userAutor" column="user_id"  lazy="false" class="ru.entity.User"/>
+        <many-to-one name="content" column="content_id"  lazy="false" class="ru.entity.Content"/>
         
     </class>
 </hibernate-mapping>

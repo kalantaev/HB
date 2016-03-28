@@ -1,6 +1,6 @@
-package DAO;
+package ru.DAO;
 
-import entity.Commentariy;
+import ru.entity.Commentariy;
 
 import java.util.List;
 

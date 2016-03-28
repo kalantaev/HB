@@ -4,6 +4,17 @@
 
 <div class="menu">
   <span style="color: red" >${errorMessage}</span>
+
+
+    <%--<form:form method="POST" commandName="user" action="/HB/leftblock">--%>
+        <%--<form:label path="login"></form:label>--%>
+        <%--<form:input path="login"/>--%>
+        <%--<form:errors path="login"/>--%>
+        <%--<form:label path="password"></form:label>--%>
+        <%--<form:input path="password"/>--%>
+        <%--<form:errors path="password"/>--%>
+        <%--<input type="submit" value="Login" >--%>
+    <%--</form:form>--%>
     <c:if test="${user.login==null}">
 
         <form action="/HB/leftblock" method="post">

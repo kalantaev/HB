@@ -1,4 +1,4 @@
-package interceprors;
+package ru.interceprors;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 

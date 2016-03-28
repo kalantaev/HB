@@ -1,8 +1,8 @@
 package ru.hibernate.DAOHibernateImpl;
 
-import DAO.UserDAO;
+import ru.DAO.UserDAO;
 import ru.hibernate.HibernateUtil;
-import entity.User;
+import ru.entity.User;
 import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 

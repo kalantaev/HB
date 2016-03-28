@@ -1,8 +1,6 @@
-package DAO;
+package ru.DAO;
 
-import entity.User;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import ru.entity.User;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package ru.controllers;
 
-import DAO.CommentariyDAO;
-import DAO.ContentDAO;
+import ru.DAO.CommentariyDAO;
+import ru.DAO.ContentDAO;
 import org.apache.log4j.Logger;
 import org.hibernate.SessionException;
 import org.springframework.beans.factory.annotation.Autowired;

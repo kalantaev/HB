@@ -1,10 +1,10 @@
 package main;
 
-import DAO.ContentDAO;
-import DAO.UserDAO;
-import entity.Commentariy;
-import entity.Content;
-import entity.User;
+import ru.DAO.ContentDAO;
+import ru.DAO.UserDAO;
+import ru.entity.Commentariy;
+import ru.entity.Content;
+import ru.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import ru.hibernate.DAOHibernateImpl.ContentDaoHibImpl;

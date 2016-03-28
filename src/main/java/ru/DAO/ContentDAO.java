@@ -1,6 +1,6 @@
-package DAO;
+package ru.DAO;
 
-import entity.Content;
+import ru.entity.Content;
 
 import java.util.List;
 

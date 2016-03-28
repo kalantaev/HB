@@ -3,7 +3,7 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="entity">
-    <class name="User" table="user2">
+    <class name="ru.entity.User" table="user2">
         <id name="userId" column="user_id">
             <generator class="native"/>
         </id>
@@ -13,11 +13,11 @@
         <property name="dateLastVisit" column="dateLastVizit"/>
         <bag name="commentariyList" inverse="true" cascade="all-delete-orphan" lazy="false">
             <key column="user_id"></key>
-            <one-to-many class="entity.Commentariy"/>
+            <one-to-many class="ru.entity.Commentariy"/>
         </bag>
         <set name="contentList" table="content_user" lazy="false">
             <key column="user_id"></key>
-            <many-to-many column="content_id" class="entity.Content"/>
+            <many-to-many column="content_id" class="ru.entity.Content"/>
         </set>
     </class>
 </hibernate-mapping>

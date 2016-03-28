@@ -1,7 +1,7 @@
 package ru.hibernate.DAOHibernateImpl;
 
-import DAO.ContentDAO;
-import entity.Content;
+import ru.DAO.ContentDAO;
+import ru.entity.Content;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import ru.hibernate.HibernateUtil;

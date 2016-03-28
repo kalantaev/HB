@@ -1,7 +1,7 @@
 package ru.hibernate.DAOHibernateImpl;
 
-import DAO.CommentariyDAO;
-import entity.Commentariy;
+import ru.DAO.CommentariyDAO;
+import ru.entity.Commentariy;
 import org.springframework.stereotype.Service;
 import ru.hibernate.HibernateUtil;
 import org.hibernate.Session;

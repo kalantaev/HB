@@ -1,7 +1,7 @@
-package JDBC.DaoJdbcImpl;
+package ru.JDBC.DaoJdbcImpl;
 
-import DAO.CommentariyDAO;
-import entity.Commentariy;
+import ru.DAO.CommentariyDAO;
+import ru.entity.Commentariy;
 
 import java.util.List;
 

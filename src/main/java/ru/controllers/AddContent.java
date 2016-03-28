@@ -1,10 +1,10 @@
 package ru.controllers;
 
-import DAO.ContentDAO;
-import DAO.UserDAO;
-import entity.Content;
+import ru.DAO.ContentDAO;
+import ru.DAO.UserDAO;
+import ru.entity.Content;
 
-import entity.User;
+import ru.entity.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

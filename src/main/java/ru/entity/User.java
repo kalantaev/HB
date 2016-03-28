@@ -1,7 +1,10 @@
-package entity;
+package ru.entity;
 
 
 
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
@@ -11,16 +14,15 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
-
+@Component
 @Entity
 @Table(name = "user")
 
 public class User {
 
     private Integer userId;
-    @Size(min = 5, message = "Login должен быть не менее 5 символов")
+    @Size(min = 5, message = "Login должен быть не менее 6 символов")
     private String login;
     @Size(min = 5, max = 20, message = "Пароль должен быть от 5 до 20 знаков")
     private String password;

@@ -1,12 +1,11 @@
 package ru.controllers;
 
-import DAO.UserDAO;
-import entity.User;
+import ru.DAO.UserDAO;
+import ru.entity.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +15,6 @@ import ru.util.ClassName;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.util.Enumeration;
 
 /**
@@ -56,12 +54,12 @@ public class Menu {
     }
 
     @RequestMapping(value = "leftblock", method = RequestMethod.POST)
-    public ModelAndView logining(@ModelAttribute("user") User userForm, HttpServletResponse response, HttpServletRequest request) {
+    public ModelAndView logining( @ModelAttribute("user") User user, HttpServletResponse response, HttpServletRequest request) {
         log.info(request.getContextPath());
         ModelMap mapModel = new ModelMap();
                 log.info(request.getParameter("id"));
 
-        User userDB = userDAO.selectByLogin(userForm.getLogin());
+        User userDB = userDAO.selectByLogin(user.getLogin());
         mapModel.addAttribute("user", userDB);
 
         if (userDB == null) {
@@ -70,7 +68,7 @@ public class Menu {
             mapModel.addAttribute("errorMessage", stringError);
             return new ModelAndView("redirect:/", mapModel);
         }
-        else if (!userForm.getPassword().equals(userDB.getPassword())){
+        else if (!user.getPassword().equals(userDB.getPassword())){
             userDB.setLogin(null);
             String stringError = "You have entered the wrong password";
             mapModel.addAttribute("errorMessage", stringError);
