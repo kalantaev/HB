@@ -5,31 +5,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>ALL USER</title>
+    <title><spring:message code="all_user"/></title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/style.css'/>"/>
 </head>
 
 <body>
-<h1 align="center">Все пользователи</h1>
+<div class="all">
+<h1 align="center" class="top"><spring:message code="all_user"/></h1>
+    <jsp:include page="${request.contextPath}/leftblock"></jsp:include>
 
-<div class="bloc3">
-    <a href="/HB/">Главная</a><br/>
-    <a href="/HB/login/">Авторизация</a><br/>
-    <a href="/HB/registration/">Регистрация</a> <br/>
-    <a href="/HB/addcontent/">Добавить материал</a><br/>
-</div>
-
-<div class="bloc1">
+    <div class="content">
+        <div class="top"><a href="">По логину</a>&nbsp;|&nbsp;<a href=""> По дате регистрации</a>&nbsp;|&nbsp;<a href="">По дате последнего визита</a></div><br/><br/>
     <c:forEach var="user" items="${users}">
         <div class="bloc2">
-            Пользователь ${user.login}<br/>
+            <spring:message code="user"/> ${user.login}<br/>
             Id ${user.userId}<br/>
-            Зарегестрирован ${user.dateReg}<br/>
-            Дата последнего визита ${user.dateLastVisit}
+            <spring:message code="registration_date"/> ${user.dateReg}<br/>
+            <spring:message code="last_vizit"/> ${user.dateLastVisit}
 
         </div>
     </c:forEach>
 </div>
-
+</div>
 </body>
 </html>

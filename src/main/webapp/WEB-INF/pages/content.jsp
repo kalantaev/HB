@@ -10,12 +10,15 @@
 </head>
 <body>
 <div class="all">
-    <h1 class="top">${content.title}</h1>
+    <h1 align="center" class="top">${content.title}</h1>
 
     <jsp:include page="${request.contextPath}/leftblock"></jsp:include>
 
     <div class="content">
-        <div class="bloc2"> ${content.contentDescription}</div>
+        <div class="bloc2"> ${content.contentDescription}<br/> <div align="right">
+				<a href="/HB/delete/?id_content=${content.contentId}"><spring:message code="delete_content"/></a>
+			</div></div>
+
         <hr/>
         <c:forEach var="coment" items="${coment}">
             <div class="bloc2">

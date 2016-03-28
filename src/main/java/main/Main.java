@@ -1,5 +1,7 @@
 package main;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import ru.DAO.ContentDAO;
 import ru.DAO.UserDAO;
 import ru.entity.Commentariy;
@@ -23,7 +25,12 @@ public class Main {
         session.beginTransaction();
 
         ContentDAO contentDAO = new ContentDaoHibImpl();
-        contentDAO.remuveContentById(28);
+        Criteria criteria = session.createCriteria(User.class).addOrder(Order.asc("dateReg"));
+        List<User> list = criteria.list();
+        for (User u: list){
+            System.out.println(u.getLogin());
+        }
+
 //
 //        User user = prepareUser(1);
 //        session.save(user);

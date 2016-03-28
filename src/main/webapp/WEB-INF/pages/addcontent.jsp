@@ -12,7 +12,7 @@
 
 <body>
 <div class="all">
-    <h1><spring:message code="pageAddCont"/></h1>
+    <h1 align="center" class="top"><spring:message code="pageAddCont"/></h1>
     <jsp:include page="${request.contextPath}/leftblock"></jsp:include>
 
     <div class="content" align="center">
@@ -20,7 +20,7 @@
 
         <form action="/HB/addcontent/" method="post">
             <input type="text" name="title" placeholder="<spring:message code="enter_cont_name"/>"/><br/>
-            <textarea name="contentDescription" placeholder="<spring:message code="add_content"/>" rows="4" cols="50"></textarea><br/>
+            <textarea name="contentDescription" placeholder="<spring:message code="contentDescription"/>" rows="4" cols="50"></textarea><br/>
             <input type="submit" value="<spring:message code="add_content"/>"/>
         </form>
     </div>
