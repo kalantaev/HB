@@ -15,7 +15,7 @@
     <jsp:include page="${request.contextPath}/leftblock"></jsp:include>
 
     <div class="content">
-        <div class="top"><a href="">По логину</a>&nbsp;|&nbsp;<a href=""> По дате регистрации</a>&nbsp;|&nbsp;<a href="">По дате последнего визита</a></div><br/><br/>
+        <div class="top"><a href="/HB/allsorteduser/">По логину</a>&nbsp;|&nbsp;<a href=""> По дате регистрации</a>&nbsp;|&nbsp;<a href="">По дате последнего визита</a></div><br/><br/>
     <c:forEach var="user" items="${users}">
         <div class="bloc2">
             <spring:message code="user"/> ${user.login}<br/>

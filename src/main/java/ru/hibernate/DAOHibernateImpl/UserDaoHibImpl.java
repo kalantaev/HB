@@ -1,5 +1,9 @@
 package ru.hibernate.DAOHibernateImpl;
 
+import org.hibernate.Criteria;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import ru.DAO.ContentDAO;
 import ru.DAO.UserDAO;
 import ru.hibernate.HibernateUtil;
 import ru.entity.User;
@@ -35,6 +39,18 @@ public class UserDaoHibImpl implements UserDAO {
         User user = (User) session.createQuery("from User where login = '" + login + "'").uniqueResult();
         session.close();
         return user;
+    }
+
+    public List<User> selectSortedByLoginUser() {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+        session.beginTransaction();
+
+        Criteria criteria = session.createCriteria(User.class).addOrder(Order.asc("login"));
+        List<User> list = criteria.list();
+        session.close();
+        return list;
+
     }
 
     public List<User> selectAllUser() {

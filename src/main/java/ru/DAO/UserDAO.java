@@ -6,6 +6,7 @@ import java.util.List;
 
 
 public interface UserDAO {
+    public List<User> selectSortedByLoginUser();
     public void insertUser(User user);
     public User selectByID(Integer id);
     public User selectByLogin(String login);
