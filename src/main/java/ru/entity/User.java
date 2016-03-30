@@ -22,7 +22,7 @@ import java.util.List;
 public class User {
 
     private Integer userId;
-    @Size(min = 5, message = "Login должен быть не менее 6 символов")
+    @Size(min = 5, message = "Login должен быть не менее 5 символов")
     private String login;
     @Size(min = 5, max = 20, message = "Пароль должен быть от 5 до 20 знаков")
     private String password;

@@ -1,5 +1,6 @@
 package ru.controllers;
 
+import org.springframework.validation.BindingResult;
 import ru.DAO.UserDAO;
 import ru.entity.User;
 import org.apache.log4j.Logger;
@@ -15,6 +16,7 @@ import ru.util.ClassName;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.Enumeration;
 
 /**
@@ -28,7 +30,7 @@ public class Menu {
     @Autowired
     private UserDAO userDAO;
     @RequestMapping(value = "/leftblock", method = RequestMethod.GET)
-    public ModelAndView printWelcome(HttpServletRequest request, ModelMap mapModel) {
+    public ModelAndView printWelcome(@ModelAttribute("user") User user, HttpServletRequest request, ModelMap mapModel) {
         log.info(request.getContextPath()+request.getServletPath()+request.getPathTranslated());
         Enumeration<String> s = request.getParameterNames();
         String url = "?";
@@ -54,10 +56,13 @@ public class Menu {
     }
 
     @RequestMapping(value = "leftblock", method = RequestMethod.POST)
-    public ModelAndView logining( @ModelAttribute("user") User user, HttpServletResponse response, HttpServletRequest request) {
-        log.info(request.getContextPath());
+    public ModelAndView logining(@Valid @ModelAttribute("user") User user, BindingResult result, HttpServletResponse response, HttpServletRequest request) {
+
+        if (result.hasErrors()) {
+            return new ModelAndView("index");
+        }
+
         ModelMap mapModel = new ModelMap();
-                log.info(request.getParameter("id"));
 
         User userDB = userDAO.selectByLogin(user.getLogin());
         mapModel.addAttribute("user", userDB);
