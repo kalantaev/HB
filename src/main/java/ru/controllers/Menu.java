@@ -30,8 +30,8 @@ public class Menu {
     @Autowired
     private UserDAO userDAO;
     @RequestMapping(value = "/leftblock", method = RequestMethod.GET)
-    public ModelAndView printWelcome(@ModelAttribute("user") User user, HttpServletRequest request, ModelMap mapModel) {
-        log.info(request.getContextPath()+request.getServletPath()+request.getPathTranslated());
+    public ModelAndView printWelcome(HttpServletRequest request, ModelMap mapModel) {
+
         Enumeration<String> s = request.getParameterNames();
         String url = "?";
         while (s.hasMoreElements()) {
@@ -40,12 +40,20 @@ public class Menu {
             url= url+np+"="+request.getParameter(np)+"&";
         }
                 mapModel.addAttribute("url", url);
+
         if (request.getCookies() != null) {
+
             for (Cookie cookie : request.getCookies()) {
+
                 if (cookie.getName().equals("id")) {
-                    if (cookie.getValue() != null | !cookie.getValue().equals("0")) {
+                    int cookeVal = new Integer(cookie.getValue());
+
+                    log.info(cookie.getName() +" "+ cookie.getValue());
+                    if ((cookeVal != 0) &  cookie.getValue() != null) {
+                        log.info("кука не равна 0 или нул");
                         mapModel.addAttribute("user", userDAO.selectByID(new Integer(cookie.getValue())));
                     } else {
+                        log.info("кука  равна 0 или нул");
                         mapModel.addAttribute("user", new User());
                     }
 
@@ -56,24 +64,28 @@ public class Menu {
     }
 
     @RequestMapping(value = "leftblock", method = RequestMethod.POST)
-    public ModelAndView logining(@Valid @ModelAttribute("user") User user, BindingResult result, HttpServletResponse response, HttpServletRequest request) {
+    public ModelAndView logining(@Valid @ModelAttribute("user") User user, BindingResult result, HttpServletResponse response) {
 
         if (result.hasErrors()) {
-            return new ModelAndView("index");
+
+            log.info("valid error");
+            user.setLogin(null);
+            return new ModelAndView("redirect:/");
         }
 
         ModelMap mapModel = new ModelMap();
 
         User userDB = userDAO.selectByLogin(user.getLogin());
         mapModel.addAttribute("user", userDB);
-
+        log.info(userDB);
         if (userDB == null) {
-
+        log.info("User with this login does not exist");
             String stringError = "User with this login does not exist";
             mapModel.addAttribute("errorMessage", stringError);
             return new ModelAndView("redirect:/", mapModel);
         }
         else if (!user.getPassword().equals(userDB.getPassword())){
+            log.info("You have entered the wrong password");
             userDB.setLogin(null);
             String stringError = "You have entered the wrong password";
             mapModel.addAttribute("errorMessage", stringError);
@@ -83,7 +95,7 @@ public class Menu {
         return new ModelAndView("redirect:/", mapModel);
     }
     @RequestMapping(value = "/exit", method = RequestMethod.POST)
-    public ModelAndView exit(HttpServletResponse response, HttpServletRequest req){
+    public ModelAndView exit(HttpServletResponse response){
         response.addCookie(new Cookie("id", "0"));
 
         return new ModelAndView("redirect:/");

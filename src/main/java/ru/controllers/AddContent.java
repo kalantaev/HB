@@ -38,18 +38,22 @@ public class AddContent {
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView registration(@ModelAttribute Content content, HttpServletRequest request) {
+        User user = null;
         if (request.getCookies() != null) {
             for (Cookie cookie : request.getCookies()) {
                 if (cookie.getName().equals("id")) {
                     if (cookie.getValue() != null | !cookie.getValue().equals("0")) {
-                       User user =  userDAO.selectByID(new Integer(cookie.getValue()));
-                        content.getListContentAutor().add(user);
+                      user = userDAO.selectByID(new Integer(cookie.getValue()));
+                        content.addUser(user);
                     }
 
                 }
             }
         }
+
         contentDAO.addContent(content);
+        log.info("content id"+content.getContentId());
+
         return  new ModelAndView("redirect:", "message", "Content " + content.getTitle() + " added");
 
 

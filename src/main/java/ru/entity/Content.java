@@ -14,7 +14,7 @@ public class Content {
     private Integer contentId;
     private String title;
     private String contentDescription;
-    private List<User> listContentAutor;
+    private List<User> listContentAutor = new ArrayList<User>();
     private List<Commentariy> commentariyList;
 
     @Id
@@ -50,12 +50,10 @@ public class Content {
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinTable(name = "content_user", joinColumns = @JoinColumn(name = "content_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
     public List<User> getListContentAutor() {
-        if(listContentAutor!=null){
         return listContentAutor;
-        }
-        else {
-            return new ArrayList<User>();
-        }
+    }
+    public void addUser(User user){
+        listContentAutor.add(user);
     }
 
     public void setListContentAutor(List<User> listContentAutor) {

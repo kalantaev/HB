@@ -1,8 +1,5 @@
 package ru.entity;
 
-
-
-
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +24,7 @@ public class User {
     @Size(min = 5, max = 20, message = "Пароль должен быть от 5 до 20 знаков")
     private String password;
     private List<Commentariy> commentariyList;
-    private List<Content> contentList;
+    private List<Content> contentList = new ArrayList<Content>();
     private Date dateReg;
     private Date dateLastVisit;
 
@@ -72,13 +69,11 @@ public class User {
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinTable(name = "content_user", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "content_id"))
     public List<Content> getContentList() {
-        if (contentList!=null){
-        return contentList;}
-        else {
-            return new ArrayList<Content>();
-        }
+        return contentList;
     }
-
+    public void addContent(Content content){
+        contentList.add(content);
+    }
     public void setContentList(List<Content> contentList) {
         this.contentList = contentList;
     }

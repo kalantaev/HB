@@ -13,21 +13,21 @@
 			</span>
     <c:if test="${user.login==null}">
 
-        <form:form method="POST" commandName="user" action="/HB/leftblock">
-            <form:label path="login"></form:label>
-            <form:input path="login"/>
-            <form:errors path="login"/>
-            <form:label path="password"></form:label>
-            <form:input path="password"/>
-            <form:errors path="password"/>
-            <input type="submit" value="<spring:message code="enter"/>" >
-        </form:form>
+        <%--<form:form method="POST" commandName="user" action="leftblock">--%>
+            <%--<form:label path="login"></form:label>--%>
+            <%--<form:input path="login" />--%>
+            <%--<form:errors path="login" />--%>
+            <%--<form:label path="password"></form:label>--%>
+            <%--<form:input path="password"/>--%>
+            <%--<form:errors path="password"/>--%>
+            <%--<input type="submit" value="<spring:message code="enter"/>" >--%>
+        <%--</form:form>--%>
 
-        <%--<form action="/HB/leftblock" method="post">--%>
-            <%--<input type="text" name="login"/><br/>--%>
-            <%--<input type="password" name="password"/><br/>--%>
-            <%--<input type="submit" value="<spring:message code="enter"/>"/>--%>
-        <%--</form>--%>
+        <form action="/HB/leftblock" method="post">
+            <input type="text" name="login"/><br/>
+            <input type="password" name="password"/><br/>
+            <input type="submit" value="<spring:message code="enter"/>"/>
+        </form>
         <a href="/HB/registration/"><spring:message code="registration"/></a> <br/>
     </c:if>
     <c:if test="${user.login!=null}">

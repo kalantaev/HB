@@ -75,6 +75,7 @@ public class UserDaoHibImpl implements UserDAO {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         session.update(user);
+        session.getTransaction().commit();
         session.close();
     }
 
