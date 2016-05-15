@@ -24,7 +24,6 @@ public class BDinicialization {
 
     BDinicialization(){
 //        inicialization();
-
     }
 
     public void inicialization(){
