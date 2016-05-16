@@ -4,12 +4,13 @@
         <hibernate-configuration>
     <session-factory>
         <!--<property name="connection.driver_class">com.mysql.jdbc.Driver</property>-->
-        <property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
+        <!--<property name="connection.driver_class">org.hsqldb.jdbcDriver</property>-->
         <!--<property name="connection.url">jdbc:mysql://127.0.0.1:3306/test</property>-->
 
-        <property name="connection.url">jdbc:hsqldb:file:tmp/testdb</property>
-        <property name="connection.username">SA</property>
-        <property name="connection.password"></property>
+        <!--<property name="connection.url">jdbc:hsqldb:mem:myscript</property>-->
+        <!--<property name="connection.username">SA</property>-->
+        <!--<property name="connection.password"></property>-->
+
         <!--<property name="dialect">org.hibernate.dialect.MySQLDialect</property>-->
        <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
         <property name="connection.pool_size">1</property>
@@ -21,7 +22,6 @@
         <mapping class="ru.entity.User"/>
         <mapping class="ru.entity.Commentariy"/>
         <mapping class="ru.entity.Content"/>
-        <mapping class="ru.test.TestEntity"/>
         <!--<mapping resource="User.hbm.xml"/>-->
         <!--<mapping resource="Commentariy.hbm.xml"/>-->
         <!--<mapping resource="Content.hbm.xml"/>-->
