@@ -35,7 +35,7 @@
         <property name="configLocation" value="classpath:/hibernate.cfg.xml" />
         <property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration" />
     </bean>
-    <!--<bean id="userDAOHibTemp" class="ru.hibernate.hibernateTemplate.UserDAOHibTemp">-->
+    <!--<bean id="userDAO" class="ru.hibernate.hibernateTemplate.UserDAOHibTemp">-->
         <!--<property name="sessionFactory" ref="sessionFactory" />-->
     <!--</bean>-->
 
