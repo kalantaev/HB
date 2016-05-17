@@ -1,8 +1,6 @@
 package ru.util;
 
-/**
- * Created by Администратор on 27.03.2016.
- */
+
 public class ClassName {
     private ClassName(){}
     public static String getClassName(){

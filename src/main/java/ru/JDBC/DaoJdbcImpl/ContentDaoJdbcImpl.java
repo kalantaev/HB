@@ -5,9 +5,7 @@ import ru.entity.Content;
 
 import java.util.List;
 
-/**
- * Created by Администратор on 29.03.2016.
- */
+
 public class ContentDaoJdbcImpl implements ContentDAO {
     @Override
     public void addContent(Content content) {

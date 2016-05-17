@@ -5,9 +5,7 @@ import ru.entity.Commentariy;
 
 import java.util.List;
 
-/**
- * Created by Администратор on 20.03.2016.
- */
+
 public class CommentariyJDBCTempl implements CommentariyDAO {
     @Override
     public void saveComment(Commentariy com) {

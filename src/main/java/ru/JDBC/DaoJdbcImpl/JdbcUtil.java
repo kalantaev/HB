@@ -1,14 +1,10 @@
 package ru.JDBC.DaoJdbcImpl;
 
 
-import com.mysql.jdbc.*;
-import ru.entity.User;
 
 import java.sql.*;
 import java.sql.Connection;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class JdbcUtil {
     private static boolean initialized;
@@ -23,7 +19,7 @@ public class JdbcUtil {
             try {
                 Class.forName(driverClass);
             }catch (ClassNotFoundException e){
-                System.out.println("Драйвер не загружен");
+                System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
             }
             initialized = true;
         }

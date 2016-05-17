@@ -19,9 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Enumeration;
 
-/**
- * Created by Администратор on 27.03.2016.
- */
+
 @Controller
 
 public class Menu {

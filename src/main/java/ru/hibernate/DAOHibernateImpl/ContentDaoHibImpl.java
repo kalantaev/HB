@@ -24,7 +24,7 @@ public class ContentDaoHibImpl implements ContentDAO {
     }
 
     public void remuveContentById(Integer id) {
-        log.info("вызван метод для удаления контента с id " + id);
+
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         Content content = (Content) session.get(Content.class,id);

@@ -7,9 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Администратор on 29.03.2016.
- */
+
 public class UserDaoJdbcImpl implements UserDAO {
     @Override
     public List<User> selectSortedByLoginUser() {
