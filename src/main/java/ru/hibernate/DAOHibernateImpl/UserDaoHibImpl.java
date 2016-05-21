@@ -3,6 +3,7 @@ package ru.hibernate.DAOHibernateImpl;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.DAO.ContentDAO;
 import ru.DAO.UserDAO;
 import ru.hibernate.HibernateUtil;
@@ -16,8 +17,12 @@ import java.util.List;
 @Service
 public class UserDaoHibImpl implements UserDAO {
 
+    @Autowired
+    SessionFactory sessionFactory;
+
     public void insertUser(User user) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        //SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(user);
         session.getTransaction().commit();
@@ -25,7 +30,7 @@ public class UserDaoHibImpl implements UserDAO {
     }
 
     public User selectByID(Integer id) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         User user = (User) session.get(User.class, id);
 
@@ -34,7 +39,7 @@ public class UserDaoHibImpl implements UserDAO {
     }
 
     public User selectByLogin(String login) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         User user = (User) session.createQuery("from User where login = '" + login + "'").uniqueResult();
         session.close();
@@ -42,7 +47,7 @@ public class UserDaoHibImpl implements UserDAO {
     }
 
     public List<User> selectSortedByLoginUser() {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
 
         session.beginTransaction();
 
@@ -54,7 +59,7 @@ public class UserDaoHibImpl implements UserDAO {
     }
 
     public List<User> selectAllUser() {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         List<User> users = new ArrayList<User>();
         users = (List<User>) session.createQuery("from User ").list();
@@ -64,7 +69,7 @@ public class UserDaoHibImpl implements UserDAO {
     }
 
     public void deleteUserByID(Integer id) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         User user = (User) session.get(User.class, id);
         session.delete(user);
@@ -72,7 +77,7 @@ public class UserDaoHibImpl implements UserDAO {
     }
 
     public void updateUser(User user) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         session.update(user);
         session.getTransaction().commit();
@@ -80,7 +85,7 @@ public class UserDaoHibImpl implements UserDAO {
     }
 
     public void updateLastVisitByID(Integer id) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         User user = (User) session.get(User.class, id);
 //        user.setDateLastVisit(new Date());

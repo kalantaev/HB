@@ -20,14 +20,15 @@ import java.util.List;
 /**
  * Created by Kalantaev Alexandr on 15.05.2016.
  */
-@Configuration
+//@Configuration
 public class BDinicialization {
 
 
-        @Bean
+        ///@Bean(name = "dataSource")
         public DataSource dataSource() {
+            System.out.println("!!!!!!!!!!!!!!!!!!");
             return new EmbeddedDatabaseBuilder()
-                    .setType(EmbeddedDatabaseType.HSQL)
+                    .setType(EmbeddedDatabaseType.H2)
                     .addScript("classpath:myscript.sql")
                     .build();
         }
