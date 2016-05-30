@@ -20,4 +20,6 @@ CREATE TABLE IF NOT EXISTS comments (
   PRIMARY KEY (content_id)
 );
 
-insert into user (password, login, dateReg, dateLastVizit) values ('pwd', 'vasa', NULL , NULL );
+insert into user (password, login, dateReg, dateLastVizit) values ('password', 'login', NULL , NULL );
+INSERT INTO content(title, description) VALUES ('This sample content','There is provided a sample of the content , to access the site , you can use a test account with the login "login" and password "password"');
+INSERT INTO comments(description, content_id, user_id) VALUES ('This sample coment', 1, 1);
